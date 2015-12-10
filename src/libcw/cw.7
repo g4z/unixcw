@@ -1,0 +1,220 @@
+.\"
+.\" UnixCW CW Tutor Package - cw
+.\" Copyright (C) 2001-2006  Simon Baldwin (simon_baldwin@yahoo.com)
+.\" Copyright (C) 2011-2015  Kamil Ignacak (acerion@wp.pl)
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with this program; if not, write to the Free Software Foundation, Inc.,
+.\" 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.\"
+.TH CW 7 "CW Tutor Package" \" -*- nroff -*-
+.SH NAME
+.\"
+CW \- the international Morse code
+.\"
+.\"
+.\"
+.SH DESCRIPTION
+.\"
+CW is an abbreviation for "continuous wave", the commonly used technical
+term for Morse code communication.  A basic knowledge or understanding of
+Morse code is a requirement for Radio Amateurs and Marine Radio Operators
+in many parts of the world.
+.PP
+.\"
+.\"
+.\"
+.SS MORSE CODE TIMINGS
+.\"
+In Morse code, a dot or dash is referred to as an element.  The basic
+timing unit is the dot period.  This is the time taken to send a dot,
+not including any space before or after the dot.  The lengths of all
+other elements are then derived from this basic unit, using the
+following rules:
+.IP
+The duration of a dash is three dots.
+.IP
+The time between each element (dot or dash) is one dot length.
+.IP
+The space between characters is three dot lengths.
+.IP
+The space between words is seven dot lengths.
+.PP
+The following formula calculates the dot period in microseconds from the
+Morse code speed in words per minute:
+.IP
+.nf
+dot period = ( 1200000 / speed )
+.fi
+.PP
+This formula arises from the use of the word PARIS as a 'standard'
+word for calibrating Morse code speed.  PARIS is 50 units long when
+sent in Morse code.  Analysis of English plain-text indicates that
+the average word is 50 units, including spaces.
+.PP
+.\"
+.\"
+.\"
+.SS MORSE CODE CHARACTERS
+.\"
+The following list shows the IS0 8859-1 (Latin-1) characters that have
+commonly understood representations in Morse code:
+.IP
+.\" \[u0022] = ", otherwise emacs syntax highlighting is messed up;
+ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\[u0022]$()+\-./:;=?_@ and space
+.PP
+In addition, following ISO 8859-1 and ISO 8859-2 accented characters are
+also part of the generally accepted international Morse code:
+.IP
+.\" ÜÄÇÖÉČŔŃŞŽ
+\[:U]\[:A]\[,C]\[:O]\['E]\[`E]\[`A]\[~N]\[S u0327] (S with cedilla), \[Z u030C] (Z with caron/hacek),
+.PP
+Finally, \fBlibcw\fP adds the following ASCII characters as extensions to
+single character procedural signals:
+.IP
+<>!&^~
+.PP
+.\"
+.\"
+.\"
+.SS MORSE CODE CHARACTER TABLES
+.\"
+The following table shows the Morse code equivalents for the ISO 8859-1,
+accented ISO 8859-1, and accented ISO 8859-2 characters above.  The ASCII
+portion of this table is taken from the \fIARRL Handbook\fP, and the
+accented extensions from various other sources:
+.\"
+.TS
+l l l l
+_ _ _ _
+l l l l .
+Ch	Code	Ch	Code
+A	.-	B	-...
+C	-.-.	D	-..
+E	.	F	..-.
+G	--.	H	....
+I	..	J	.---
+K	-.-	L	.-..
+M	--	N	-.
+O	---	P	.--.
+Q	--.-	R	.-.
+S	...	T	-
+U	..-	V	...-
+W	.--	X	-..-
+Y	-.--	Z	--..
+.BR
+0	-----	1	.----
+2	..---	3	...--
+4	....-	5	.....
+6	-....	7	--...
+8	---..	9	----.
+.BR
+.\" \[u0022] = ", otherwise emacs syntax highlighting is messed up;
+\[u0022]	.-..-.	'	.----.
+$	...-..-	(	-.--.
+)	-.--.-	+	.-.-.
+,	--..--	-	-....-
+.\" "\[char46]" is a dot
+\[char46]	.-.-.-	/	-..-.
+:	---...	;	-.-.-.
+\(eq	-...-	?	..--..
+\(ul	..--.-
+.TE
+.TS
+l l l l
+_ _ _ _
+l l l l .
+Ch	Code	Ch	Code
+\[:U]	..--	\[:A]	.-.-
+\[,C]	-.-..	\[:O]	---.
+\['E]	..-..	\[`A]	.-..-
+\[`A]	.--.-	\[~N]	--.--
+\[S u0327] (S+cedilla)	----	\[vZ] (Z+caron/hacek)	--..-
+.TE
+.PP
+In addition to the above standard characters, the following characters
+are conventionally used for punctuation and procedural signals as
+follows:
+.\"
+.TS
+l l l l
+_ _ _ _
+l l l l.
+Ch	Code	Ch	Code
+.\" \[u0022] = "
+\[u0022]	.-..-.	'	.----.
+$	...-..-	(	-.--.
+)	-.--.-	+	.-.-.
+,	--..--	-	-....-
+.\" "\[char46]" is a dot
+\[char46]	.-.-.-	/	-..-.
+:	---...	;	-.-.-.
+\(eq	-...-	?	..--..
+\(ul	..--.-	@	.--.-.
+.TE
+.PP
+and the following are non-conventional extensions implemented
+by \fBlibcw\fP:
+.\"
+.TS
+l l l l
+_ _ _ _
+l l l l.
+Ch	Code	Ch	Code
+<	...-.-	>	-...-.-
+!	...-.	&	.-...
+^	-.-.-	~	.-.-..
+.TE
+.PP
+An alternative view of punctuation and procedural signals is as
+combination Morse characters:
+.\"
+.TS
+l l l l
+_ _ _ _
+l l l l.
+Ch	Prosig	Ch	Prosig
+.\" \[u0022] = "
+\[u0022]	[AF]	'	[WG]
+$	[SX]	(	[KN]
+)	[KK]	+	[AR]
+,	[MIM]	-	[DU]
+.\" "\[char46]" is a dot
+\[char46]	[AAA]	/	[DN]
+:	[OS]	;	[KR]
+\(eq	[BT]	?	[IMI]
+\(ul	[IQ]	@	[AC]
+<	[VA],[SK]	>	[BK]
+!	[SN]	&	[AS]
+^	[KA]	~	[AL]
+.TE
+.PP
+.\"
+.\"
+.\"
+.SH NOTES
+.\"
+Despite the fact that this manual page constantly and consistently
+refers to Morse code elements as dots and dashes, DO NOT think in these
+terms when trying to learn Morse code.  Always think of them as 'dit's
+and 'dah's.
+.PP
+.\"
+.\"
+.\"
+.SH SEE ALSO
+.\"
+Man pages for \fBlibcw\fP(3,LOCAL), \fBcw\fP(1,LOCAL), \fBcwgen\fP(1,LOCAL),
+\fBcwcp\fP(1,LOCAL), and \fBxcwcp\fP(1,LOCAL).
+.\"

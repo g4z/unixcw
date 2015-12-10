@@ -1,0 +1,70 @@
+# Dutch translation of unixcw debconf templates.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the unixcw package.
+# Jeroen Schot <schot@a-eskwadraat.nl>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: unixcw 3.0-5\n"
+"Report-Msgid-Bugs-To: unixcw@packages.debian.org\n"
+"POT-Creation-Date: 2012-01-11 06:51+0100\n"
+"PO-Revision-Date: 2012-01-12 14:40+0100\n"
+"Last-Translator: Jeroen Schot <schot@a-eskwadraat.nl>\n"
+"Language-Team: Debian l10n Dutch <debian-l10n-dutch@lists.debian.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid "Run cwcp with root privileges?"
+msgstr "Cwcp met beheerdersprivileges uitvoeren?"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cwcp can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Wanneer cwcp wordt uitgevoerd met verhoogde privileges (wat niet wordt "
+"aangeraden), kan deze geluiden produceren via de console-buzzer."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Please choose whether this should be achieved by giving the executable the "
+"\"setuid\" attribute."
+msgstr ""
+"Geef aan of dit mogelijk moet worden gemaakt door het \"setuid\"-attribuut "
+"toe te kennen aan het programma."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Alternatives include running the program with sudo or eliminating this issue "
+"completely by using output via a sound card instead of the buzzer."
+msgstr ""
+"Andere mogelijkheden zijn onder andere het uitvoeren van het programma met "
+"sudo of door de uitvoer via de geluidskaart in plaats van de buzzer te laten "
+"verlopen."
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid "Run cw with root privileges?"
+msgstr "Cw met beheerdersprivileges uitvoeren?"
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cw can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Wanneer cw wordt uitgevoerd met verhoogde privileges (wat niet wordt "
+"aangeraden), kan deze geluiden produceren via de console-buzzer."

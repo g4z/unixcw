@@ -1,0 +1,600 @@
+unixcw (3.4.2-1) unstable; urgency=low
+
+  * New upstream release (refactoring of libcw).
+
+ -- Kamil Ignacak <acerion@wp.pl>  Wed, 17 Jun 2015 22:19:20 +0100
+
+unixcw (3.4.1-1) unstable; urgency=low
+
+  * New upstream release (refactoring of libcw).
+
+ -- Kamil Ignacak <acerion@wp.pl>  Fri, 02 Jan 2015 11:45:30 +0100
+
+unixcw (3.4.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixes libcw problem with OSS under FreeBSD and possibly kFreeBSD.
+    Closes: #759126
+  * Fixes cwcp problem with reading CWCP_OPTIONS environment variable.
+    Closes: #758915
+
+ -- Kamil Ignacak <acerion@wp.pl>  Tue, 11 Nov 2014 15:21:50 +0100
+
+unixcw (3.3.1-1) unstable; urgency=low
+
+  * New upstream release fixes some problems in libcw library
+    (dequeueing from tone queue).
+
+ -- Kamil Ignacak <acerion@wp.pl>  Wed, 23 Apr 2014 20:36:40 +0100
+
+unixcw (3.3.0-1) unstable; urgency=low
+
+  * New upstream release fixes some problems in libcw library
+    (receiver code), in build system, and adds more unit tests.
+  * New italian translation of debian templates. Thanks to
+    Fabio Pirola for contributing! Closes: #701677
+  * New japanese translation of debian templates. Thanks to
+    Hideki Yamane for contributing! Closes: #717703
+
+ -- Kamil Ignacak <acerion@wp.pl>  Wed, 27 Nov 2013 21:44:29 +0100
+
+unixcw (3.2.0-1) unstable; urgency=low
+
+  * New upstream release fixes some problems in libcw library.
+    The release also adds new header file: libcw_debug.h
+
+ -- Kamil Ignacak <acerion@wp.pl>  Fri, 11 Jan 2013 19:40:30 +0100
+
+unixcw (3.1.1-1) unstable; urgency=low
+
+  * New upstream release fixes problem in libcw library: interlocks in
+    thread code.  The problem was visible in cwdaemon. unixcw
+    applications don't seem to be affected.
+
+ -- Kamil Ignacak <acerion@wp.pl>  Wed, 04 Jul 2012 19:02:34 +0100
+
+unixcw (3.1.0-2) unstable; urgency=low
+
+  * Fixing entries in debian/changelog and debian/control, as
+    suggested by Kamal Mostafa
+
+ -- Kamil Ignacak <acerion@wp.pl>  Sun, 01 Jul 2012 14:14:20 +0100
+
+unixcw (3.1.0-1) unstable; urgency=low
+
+  * Added support for PulseAudio, which should be a good news for users
+    of the package on Ubuntu.
+  * Implemented run-time linking of audio libraries decreases dependency
+    on libasound (and from this release on libpulse) from 'requires' to
+    'recommends'.
+  * Added following flags to configure.ac:
+    --disable-{console|oss|alsa|pulseaudio|cwcp|xcwcp}.
+    "--disable-console" may help to compile unixcw on hurd-i386.
+  * cwcp no longer limits gap to 20, currently the limit (imposed by
+    libcw) is 60. Closes: #237891
+  * It has been tested and confirmed that after applying available patch,
+    and after redesign of OSS code, volume mixer is no longer muted at
+    exit of cw or cwcp. Closes: #567394
+  * It has been tested and confirmed that after applying available patch,
+    and after redesign of OSS code, unixcw applications no longer use
+    SOUND_MIXER_PCM ioctl, and so the problem described in #567392
+    disappeared. Closes: #567392
+
+ -- Kamil Ignacak <acerion@wp.pl>  Sat, 30 Jun 2012 20:08:49 +0100
+
+unixcw (3.0.2-1) unstable; urgency=low
+
+  * Fixing FTBFS (problems with config.* files). I think that thanks to
+    new entry in debian/source/options the fix is permanent. Closes: #676752.
+  * Removing 'debian/' from unixcw_3.0.2-1.debian.tar.gz. Upstream version
+    bump to avoid problems with upload.
+
+ -- Kamil Ignacak <acerion@wp.pl>  Mon, 18 June 2012 23:03:08 +0100
+
+unixcw (3.0.1-3) unstable; urgency=low
+
+  * Fixing problems with building. Closes: #663947.
+
+ -- Kamil Ignacak <acerion@wp.pl>  Thu, 15 March 2012 00:11:14 +0100
+
+unixcw (3.0.1-2) unstable; urgency=low
+
+  * Debconf templates and debian/control reviewed by the debian-l10n-
+    english team as part of the Smith review project. Closes: #652526
+  * [Debconf translation updates]
+  * Portuguese (Pedro Ribeiro).  Closes: #654962
+  * Slovak (Ivan Masár).  Closes: #655464
+  * Dutch; (Jeroen Schot).  Closes: #655718
+  * Portuguese (Pedro Ribeiro).  Closes: #655766
+  * Russian (Yuri Kozlov).  Closes: #655830
+  * German (Chris Leick).  Closes: #656080
+  * Czech (Michal Simunek).  Closes: #656240
+  * French (Steve R. Petruzzello).  Closes: #656419
+  * Indonesian (Mahyuddin Susanto).  Closes: #657462
+  * Danish (Joe Hansen).  Closes: #657500
+  * Polish (Michał Kułach).  Closes: #657513
+  * Swedish (Martin Bagge / brother).  Closes: #657549
+  * Spanish; (Jaime Robles).  Closes: #657744
+  * Spanish; (Jaime Robles).  Closes: #657744
+  * L10N process has been managed by Christian Perrier
+    <bubulle@debian.org>
+
+ -- Kamil Ignacak <acerion@wp.pl>  Mon, 30 Jan 2012 20:08:49 +0100
+
+unixcw (3.0.1-1) unstable; urgency=low
+
+  * Prepare unixcw source package for new release: 3.0.1
+  * Remove source of lintian warnings:
+     - W: cw: maintainer-script-ignores-errors preinst
+     - W: cwcp: maintainer-script-ignores-errors preinst
+     - W: libcw3-dev: manpage-has-errors-from-man ...
+     - W: xcwcp: maintainer-script-ignores-errors preinst
+
+ -- Kamil Ignacak <acerion@wp.pl>  Sun, 08 Jan 2012 13:22:36 +0100
+
+unixcw (3.0-5) unstable; urgency=high
+
+  * Remove dangling symlinks /usr/share/doc/{cw,cwcp,xcwcp}
+    (Thanks Bob Proulx). Closes: #653411.
+  * Cherry-pick from upstream: {0008,0009}- patches for mawk
+
+ -- Kamal Mostafa <kamal@whence.com>  Mon, 02 Jan 2012 11:33:19 -0800
+
+unixcw (3.0-4) unstable; urgency=high
+
+  * Fix FTBFS in Debian kfreebsd (missing snd_pcm test routines)
+
+ -- Kamal Mostafa <kamal@whence.com>  Sat, 31 Dec 2011 11:56:45 -0800
+
+unixcw (3.0-3) unstable; urgency=high
+
+  * Fix upgrade from unixcw:
+    - libcw3{-dev} Replaces and Conflicts unixcw{-dev}. Closes: #653411
+  * Cherry-pick from upstream: 0006-Adding-Makefile.inc-to-clean-target.patch
+
+ -- Kamal Mostafa <kamal@whence.com>  Wed, 28 Dec 2011 21:27:48 -0800
+
+unixcw (3.0-2) unstable; urgency=low
+
+  * Fix library dependencies: alsa, pthread, m
+    - Add libcw3-dev Depends on libasound2-dev
+    - Drop Replaces: unixcw{-dev} (see Bug: #652618)
+  * Reapply lost patch: Fix FTBFS on GNU/kFreeBSD. Closes: #403043 (again).
+  * Set libcw3 debian package section to libs
+
+ -- Kamal Mostafa <kamal@whence.com>  Thu, 22 Dec 2011 14:44:54 -0800
+
+unixcw (3.0-1) unstable; urgency=low
+
+  * Prepare Debian packages for upstream package version 3.0.
+  * New maintainer.  Closes: #554134.
+
+ -- Kamil Ignacak <acerion@wp.pl>  Sat, 19 Nov 2011 17:06:21 +0100
+
+unixcw (2.3-13) unstable; urgency=low
+
+  * QA upload.
+  * Bump debhelper compatibility level to 7
+  * Replace "dh_clean -k" by dh_prep
+  * Fix pending l10n issues. Debconf translations:
+    - Czech (Vítězslav Kotrla).  Closes: #535142
+    - Slovak (Ivan Masár).  Closes: #535161
+    - Japanese (Hideki Yamane (Debian-JP)).  Closes: #558064
+    - Asturian (marquinos).  Closes: #561399
+    - Italian (Vincenzo Campanella).  Closes: #561648
+
+ -- Christian Perrier <bubulle@debian.org>  Fri, 25 Dec 2009 09:10:13 +0100
+
+unixcw (2.3-12) unstable; urgency=low
+
+  * Retiring - set the package maintainer to Debian QA Group.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 03 Nov 2009 07:14:08 +0000
+
+unixcw (2.3-11) unstable; urgency=low
+
+  * Only install cw.7.gz, omit CW.7.gz. Closes: #229696.
+  * Several lintian fixes.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 20 Nov 2008 19:59:04 +0100
+
+unixcw (2.3-10) unstable; urgency=low
+
+  * Build depend on mawk|gawk so a correct .pc file is created on
+    hppa. Closes: #488988.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat, 19 Jul 2008 15:48:46 +0200
+
+unixcw (2.3-9) unstable; urgency=low
+
+  * Add datarootdir to Makefile.inc.in.
+  * Use 'make clean' instead of 'make distclean'.
+  * Remove config.status when cleaning, so configure will be called
+    and Makefile.inc will be created. Closes: #463492.
+  * More manual page fixes to satisfy lintian.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat, 09 Feb 2008 12:37:28 +0100
+
+unixcw (2.3-8) unstable; urgency=low
+
+  * Menu transition to "Amateur Radio".
+  * Bump standards version.
+  * Many lintian fixes.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 31 Jan 2008 22:15:52 +0100
+
+unixcw (2.3-7) unstable; urgency=low
+
+  * Remove leftover debconf stuff from postinst/postrm. Thanks to
+    Lucas Nussbaum. Closes: #431273.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Fri, 06 Jul 2007 09:57:09 +0200
+
+unixcw (2.3-6) unstable; urgency=low
+
+  * For xcwcp we use the default sound option, which is the soundcard
+    instead of the console. This also removes the need for setting the
+    suid bit and asking debconf questions. Closes: #416138.
+  * Portuguese translation for debconf messages. Closes: #422902.
+  * This bug seems to have been fixed in this version. Closes: #231518.
+    Thanks Yoshio Nakamura for reporting!
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat, 12 May 2007 16:55:23 +0200
+
+unixcw (2.3-5) unstable; urgency=low
+
+  * Install the cw.7 manual page into the unixcw package.
+  * Adapt README.Debian, binaries in the original source are no longer
+    statically linked.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue,  6 Feb 2007 19:15:09 +0100
+
+unixcw (2.3-4) unstable; urgency=low
+
+  * Fix FTBFS on GNU/kFreeBSD. Thanks Petr Salinger. Closes: #403043.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 18 Dec 2006 09:45:19 +0100
+
+unixcw (2.3-3) unstable; urgency=low
+
+  * Fix FTBFS on amd64. Thanks to Andreas Henriksson.
+    Closes: #400190, #401087.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon,  4 Dec 2006 20:16:51 +0100
+
+unixcw (2.3-2) unstable; urgency=low
+
+  * Install libcw.pc into the unixcw-dev package.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 29 Nov 2006 20:00:03 +0100
+
+unixcw (2.3-1) unstable; urgency=low
+
+  * New upstream. Some comments by the author follows below.
+  * An occurrence but not problem, presumably. Closes: #229690.
+  * The gap now limits at 80 dots. Closes: #237981.
+  * Dictionaries are fully configurable using files read at program
+    startup. Closes: #239001.
+  * Probably unavoidable.  To track CW speeds, the program needs to
+    see a differential between dot and dash.  If fed only, say, dots, it has no
+    way of telling if these are dots or dashes, so cannot vary or auto-determine
+    speeds. Closes: #261729.
+  * I couldn't tell if this was a joke report.  I could put a blank
+    entry in the table, one side containing an ASCII ' ' and the other containing
+    its representation in dots and dashes as " ", but it wouldn't look useful.
+    Or perhaps I misread the request? Closes: #229694.
+  * Fixed by holding the soundcard open in cwlib for ~10 seconds of inactivity.
+    Closes: #230579.
+  * Other bugs fixed. Closes: #231418, #236415, #222128, #232481, #261731, #292395.
+  * I thought about this, and it's surprisingly hard, given the architecture
+    of cwlib. The library's really only happy talking to a genuine sound
+    device. Closes: #222432.
+  * The 4WPM minimum is a careful balance between putting only a
+    second or so of audio data into the sound card and ensuring it doesn't run
+    out of data during the longest (dash) element.  Less than 4 is tricky.  Well,
+    3 might just be doable, but 2 is out, and frankly, anything less than 4 loses
+    the rhythm to the point where it's not really usable anyway. So, rejected.
+    Closes: #241973.
+  * Not done by xcwcp because it's really a tutor, not a reader
+    program.  Adding this would bring in a whole slew of software tone filtering
+    issues.  This is just the type of program that one could write around cwlib,
+    though, so feel free to go for it!  (In fact I have a prototype from several
+    years ago that reads raw audio files, finds tone edges, and then has a go at
+    printing out CW read from it -- perhaps I should dust it off..).
+    Closes: #263356.
+  * Bugs not tackled: 222010, 222126, 236411, 261730, 261732.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun, 19 Nov 2006 19:52:38 +0100
+
+unixcw (2.2-15) unstable; urgency=low
+
+  * Added Swedish debconf templates translation by Daniel Nylander,
+    thanks! Closes: #333594.
+  * Cwgen optimisation by Andor Demarteau so the program can generate
+    random groups of chars of random sizes.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun, 22 Jan 2006 19:42:52 +0100
+
+unixcw (2.2-14) unstable; urgency=low
+
+  * Fix dependencies, so we can use cdebconf. Closes: #332132.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun,  9 Oct 2005 09:54:22 +0200
+
+unixcw (2.2-13) unstable; urgency=low
+
+  * Rebuild against transitioned Qt.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu,  1 Sep 2005 19:36:55 +0200
+
+unixcw (2.2-12) unstable; urgency=low
+
+  * Migrate to debhelper.
+  * Compile against latest qt.
+  * Add autotools-dev to the build dependencies.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun, 14 Aug 2005 20:40:08 +0200
+
+unixcw (2.2-11) unstable; urgency=low
+
+  * Include Czech debconf translation by Miroslav Kure. Closes: #287304.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 27 Dec 2004 09:48:56 +0100
+
+unixcw (2.2-10) unstable; urgency=low
+
+  * xcwcp: overwrite the createPopupMenu method and delete the popup menu
+    when right-clicking the main window. This way we can use the right-mouse
+    button for dah's (left button is for dit's).
+  * xcwcp: make sure it all works without a mouse. A label called 'Mode'
+    was added just before the QComboBox mode selection widget. The combo
+    widget can get focus by using Alt+m. You can then use the space bar or the
+    up/down keys to change the mode. The Tab key moves to the next widget, so
+    you can change speed, etc. Shift+Tab moves backwards. Closes: #230298.
+  * As a consequence of this, Ctrl and Shift key's have been disabled as
+    paddles, this would interfere with keyboard control of the program.
+    Please use left and right cursor keys.
+  * Some changes to the xcwcp manual page to reflect all this. Thanks again
+    to Dan for the report.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 13 Jul 2004 16:40:25 +0200
+
+unixcw (2.2-9) unstable; urgency=low
+
+  * Close a bug which is still open and was fixed. Closes: #220348.
+  * xcwcp: fixed straight key input when using the middle mouse button. The
+    'contents' mouse event are now called, so we call the events of the
+    edit window instead of the scrollwindow. Closes: #230886.
+  * Bugs reported by Dan Jacobson. Thanks!
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 12 Jul 2004 14:30:46 +0200
+
+unixcw (2.2-8) unstable; urgency=low
+
+  * Bring back the old behaviour we had with Qt2: when first started, xcwcp
+    will show the go button, when clicked, the stop button appears.
+    QIconSet now contains both start and stop pixmaps, this behaviour
+    needed for Qt3. Closes: #220350.
+  * This also removes the first error seen at startup:
+    "QToolButton::setOnIconSet(): This function is not supported anymore".
+    The other error reported by Dan: "QSettings::sync: filename is
+    null/empty" means you don't have write permissions to your ~/.qt
+    directory. If you fix this, the error will dissapear. Closes: #220352.
+  * The bug reported by Dan as: "/usr/bin/cw: hear a few chars, then poops
+    out" most probably related to the sound card driver. I have tested unixcw
+    with different systems and simple cannot reproduce this behaviour. As
+    Dan reports: with alsa properly installed, the program behaves correctly.
+    Closes: #218556.
+  * Both errors reported by Dan concerning the cw.1 and cw.7 manpages are
+    related to language settings, which are not able to display iso8859-1
+    accented characters. To properly display these manual pages, you must
+    configure your environment, so they can display accented characters.
+    Try setting LANG=en_US.ISO-8859-1 or similar and make sure to generate
+    that locale using 'dpkg-reconfigure locales'. Closes: #218555, #218554.
+  * Correct an error in cw.1 manpage to show correct timings when testing
+    itimer. Closes: #222129.
+  * Append a newline when cw exits. Closes: #222415.
+  * Thanks to Dan Jacobson <jidanni@jidanni.org>, for reporting all these
+    bugs. It is much appreciated. In the next upload I will address the
+    remaining wishlist items or forward them to the upstream author.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun, 25 Jan 2004 19:27:35 +0100
+
+unixcw (2.2-7) unstable; urgency=low
+
+  * Correct debian/rules and call po2debconf for every template.
+  * Include templates and conf for every package. Somehow it got deleted
+    during the upgrade to debconf-po.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu,  7 Aug 2003 20:59:52 +0200
+
+unixcw (2.2-6) unstable; urgency=low
+
+  * Correct debian/rules so it doesn't remove debian/po. Closes: #199667.
+  * French translation for the templates by Michel. Closes: #200583.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed,  9 Jul 2003 17:42:16 +0200
+
+unixcw (2.2-5) unstable; urgency=low
+
+  * Patch by Michel Grentzinger which adds gettext support for the debconf
+    templates. Thanks Michel. Closes: #199667.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun,  6 Jul 2003 16:37:51 +0200
+
+unixcw (2.2-4) unstable; urgency=low
+
+  * Okay, build against qt-mt. Closes: #180677.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 12 Feb 2003 18:34:36 +0100
+
+unixcw (2.2-3) unstable; urgency=low
+
+  * Fixed override disparity.
+  * Couple of lintian fixes.
+  * Compile xcwcp against qt, not qt-mt.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue,  4 Feb 2003 19:31:55 +0100
+
+unixcw (2.2-2) unstable; urgency=low
+
+  * Fixed the menu entries. Closes: #178644.
+  * Update standards version.
+  * Compile against libqt3-mt.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat,  1 Feb 2003 11:39:17 +0100
+
+unixcw (2.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixes issues with /dev/mixer on OSS architecture.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat, 18 May 2002 18:17:29 +0200
+
+unixcw (2.1-2) unstable; urgency=low
+
+  * Autoconf not needed. Closes: #145158.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 30 Apr 2002 15:33:11 +0200
+
+unixcw (2.1-1) unstable; urgency=low
+
+  * New upstream release, soundcard support.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Fri, 19 Apr 2002 21:25:15 +0200
+
+unixcw (2.0-6) unstable; urgency=low
+
+  * Russian template for cwcp by Ilgiz Kalmetev. Closes: #137631.
+  * Russian template for xcwcp by Ilgiz Kalmetev. Closes: #137703.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 18 Mar 2002 13:10:38 +0100
+
+unixcw (2.0-5) unstable; urgency=low
+
+  * Make the prebuild scripts executable, so the debconf templates
+    actually get installed.
+  * Fix a couple of lintian errrors.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 25 Feb 2002 09:28:55 +0100
+
+unixcw (2.0-4) unstable; urgency=low
+
+  * Fix from Maitland Bottoms <bottoms@debian.org> to fix build on hppa.
+    Closes: #134041.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 18 Feb 2002 14:40:09 +0100
+
+unixcw (2.0-3) unstable; urgency=low
+
+  * Russian template file for cw. Thanks to Ilgiz Kalmetev
+    <i.kalmetev@bis.bashtelecom.ru>. Closes: #114306.
+  * Fix a spelling error. Thanks to Matt Zimmerman <mdz@debian.org>.
+    Closes: #125524.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 18 Feb 2002 14:39:53 +0100
+
+unixcw (2.0-2) unstable; urgency=low
+
+  * Spanish translation of the templates. Closes: #104119.
+  * Change cwcp, so it uses red by default as a background. This fixes
+    colors of cwcp in a x-terminal.
+  * Remove libc6-dev and gzip from the Build-Depends line since they are
+    build-essential.
+  * Correct the depends line for the unixcw package.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 12 Jul 2001 19:38:27 +0200
+
+unixcw (2.0-1) unstable; urgency=low
+
+  * New upstream.
+  * Lintian seems to like short binary names now, so I can revert to 'cw'
+    instead of 'unixcw'. Saves me lots of work.
+  * Split up the package into 5 different ones, since Simon now also provides
+    a seperate library which we could use for development. So we have unixcw,
+    containing the shared lib, unixcw-dev: static lib and headers and three
+    different binary packages to choose from who all interface to libcw.
+  * Use dpkg-statoverride for registering the bins suid root. They all need
+    KIOCSOUND ioctl.
+  * Debconf is used to ask the user is he wants to use the suid bit.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 20 Jun 2001 09:44:23 +0200
+
+unixcw (1.1a-7) unstable; urgency=low
+
+  * Add build-depends.
+  * Update standards version.
+  * Stop using suidregister. Instead, make unixcw binary of group audio.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sun, 18 Feb 2001 12:35:05 +0100
+
+unixcw (1.1a-6) unstable; urgency=low
+
+  * Fixed lintian errors.
+  * Recompile for new ncurses lib.
+  * Removed cw manpage. Closes bug #62518
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Sat, 29 Jul 2000 14:19:29 +0200
+
+unixcw (1.1a-5) unstable; urgency=low
+
+  * Some work on the menu entry. Had bad quotes.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 14 Oct 1999 18:50:39 +0200
+
+unixcw (1.1a-4) unstable; urgency=low
+
+  * Typo.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 14 Oct 1999 18:49:45 +0200
+
+unixcw (1.1a-3) unstable; urgency=low
+
+  * Updated standards version.
+  * FHS.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu,  7 Oct 1999 18:04:38 +0200
+
+unixcw (1.1a-2) unstable; urgency=low
+
+  * Unixcw builds OK on alpha, so architecture can be 'any'. Thanks
+    to paul@debian.org. Fixes bug #27939.
+  * Compile with new version of ncurses.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 27 Oct 1998 10:31:37 +0100
+
+unixcw (1.1a-1) unstable; urgency=low
+
+  * Unixcw is now really GPL and can go into main.
+  * Hamradio menu added.
+  * I have set the SUID bit, so any user can access the PC speaker.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 25 Aug 1998 08:42:09 +0200
+
+unixcw (1.1-3) frozen; urgency=low
+
+  * Copyright fails #1 of DFSG, so unixcw has to go into non-free.
+    The copyright file now reflects the copyright of the package.
+    This fixes bug #19690.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 16 Mar 1998 20:06:14 +0100
+
+unixcw (1.1-2) unstable; urgency=low
+
+  * Lintian complains about possible name space pollution. Changed the
+    name of the cw binary to unixcw. Manual pages are adapted because
+    of the new binary name.
+  * Previous build was done with a buggy debstd/debmake and showed a file
+    in the md5sums control file which did not exist.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 17 Feb 1998 20:45:42 +0100
+
+unixcw (1.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 12 Jan 1998 21:09:01 +0100
+
+Local variables:
+mode: debian-changelog
+End:

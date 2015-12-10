@@ -1,0 +1,100 @@
+# Italian translation of unixcw po-debconf.
+# Copyright (C) 2013 Fabio Pirola
+# This file is distributed under the same license as the unixcw package.
+#
+# Vincenzo Campanella <vinz65@gmail.com>, 2009.
+# Fabio Pirola <rola.hack@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: unixcw\n"
+"Report-Msgid-Bugs-To: unixcw@packages.debian.org\n"
+"POT-Creation-Date: 2012-01-11 06:51+0100\n"
+"PO-Revision-Date: 2013-02-25 23:00+0100\n"
+"Last-Translator: Fabio Pirola <rola.hack@gmail.com>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid "Run cwcp with root privileges?"
+msgstr "Eseguire cwcp con i privilegi di root?"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cwcp can "
+"produce sounds using the console buzzer."
+msgstr "Se eseguito con privilegi elevati (che non è raccomandato), "
+"cwcp può produrre suoni utilizzando il buzzer della console."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Please choose whether this should be achieved by giving the executable the "
+"\"setuid\" attribute."
+msgstr "Scegliere se questo dovrebbe essere fatto impostando "
+"l'attributo \"setuid\" dell'eseguibile."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Alternatives include running the program with sudo or eliminating this issue "
+"completely by using output via a sound card instead of the buzzer."
+msgstr "Le alternative includono l'esecuzione del programma con il "
+"comando sudo oppure l'eliminazione completa di questo problema "
+"tramite l'utilizzo di una scheda audio anziché del buzzer."
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid "Run cw with root privileges?"
+msgstr "Eseguire cw con i privilegi di root?"
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cw can "
+"produce sounds using the console buzzer."
+msgstr "Se eseguito con privilegi elevati (che non è raccomandato), "
+"cw può produrre suoni utilizzando il buzzer della console."
+
+
+#~| msgid "Make cwcp setuid root"
+#~ msgid "Make cwcp setuid root?"
+#~ msgstr "Impostare cwcp con il setuid root?"
+
+#~| msgid "Make cw setuid root"
+#~ msgid "Make cw setuid root?"
+#~ msgstr "Impostare cw con il setuid root?"
+
+#~ msgid ""
+#~ "The cwcp program only runs correctly as the root user. One way of doing "
+#~ "this is to make the program setuid root. This is generally a bad idea as "
+#~ "there are better ways, such as using the sudo program, to do this. "
+#~ "However, you have the option here of making it setuid root if you like."
+#~ msgstr ""
+#~ "cwcp funziona regolarmente solo se eseguito come utente root; a tal fine "
+#~ "lo si può impostare con setuid root, ma questa normalmente non è una "
+#~ "buona idea, in quanto ci sono modi migliori come, per esempio, utilizzare "
+#~ "il programma sudo. Ad ogni modo, si ha la possibilità di impostarlo con "
+#~ "setuid root, se lo si desidera."
+
+#~ msgid ""
+#~ "The cw program only runs correctly as the root user. One way of doing "
+#~ "this is to make the program setuid root. This is generally a bad idea as "
+#~ "there are better ways, such as using the sudo program, to do this. "
+#~ "However, you have the option here of making it setuid root if you like."
+#~ msgstr ""
+#~ "cw funziona regolarmente solo se eseguito come utente root; a tal fine lo "
+#~ "si può impostare con setuid root, ma questa normalmente non è una buona "
+#~ "idea, in quanto ci sono modi migliori come, per esempio, utilizzare il "
+#~ "programma sudo. Ad ogni modo, si ha la possibilità di impostarlo con "
+#~ "setuid root, se lo si desidera."

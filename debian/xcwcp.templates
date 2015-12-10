@@ -1,0 +1,10 @@
+Template: xcwcp/suid_bit
+Type: boolean
+Default: false
+_Description: Make xcwcp setuid root?
+ xcwcp can produce sounds using console buzzer, but this feature
+ is available only if xcwcp is run by root user.
+ You can achieve this by setting setuid bit here (not recommended)
+ or by running xcwcp with sudo (also not recommended). You can also
+ use soundcard output instead of console buzzer output and
+ eliminate this problem completely.

@@ -1,0 +1,70 @@
+# Danish translation unixcw.
+# Copyright (C) 2012 unixcw & nedenstående oversættere.
+# This file is distributed under the same license as the unixcw package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: unixcw\n"
+"Report-Msgid-Bugs-To: unixcw@packages.debian.org\n"
+"POT-Creation-Date: 2012-01-11 06:51+0100\n"
+"PO-Revision-Date: 2012-01-14 17:30+01:00\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid "Run cwcp with root privileges?"
+msgstr "Kør cwcp med administratorprivilegier (root)?"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cwcp can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Hvis cwcp køres med forhøjede privilegier (hvilket ikke anbefales), så kan "
+"cwcp lave lyde med brug af konsolsummeren."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Please choose whether this should be achieved by giving the executable the "
+"\"setuid\" attribute."
+msgstr ""
+"Vælg venligst hvorvidt dette skal opnås ved at give den kørbare attributten "
+"»setuid«."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Alternatives include running the program with sudo or eliminating this issue "
+"completely by using output via a sound card instead of the buzzer."
+msgstr ""
+"Alternativer inkluderer kørsel af programmet med sudo eller eliminering af "
+"denne problemstilling ved at bruge udsendelse via et lydkort i stedet for "
+"summeren."
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid "Run cw with root privileges?"
+msgstr "Kør cw med administratorprivilegier?"
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cw can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Hvis cw køres med forhøjede privilegier (hvilket ikke anbefales), så kan cw "
+"lave lyde med brug af konsolsummeren."

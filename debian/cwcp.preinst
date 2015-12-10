@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#DEBHELPER#
+
+set -e
+
+DOCLINK=/usr/share/doc/cwcp
+
+# Previously in version 2.3-13 $DOCLINK was a symlink to /usr/share/doc/unixcw.
+# Removing this symlink must be handled explicitly so that
+# the new version of the package can be placed into a real directory
+# there otherwise the symlink will be preserved and the doc files
+# will be missing after the install.  This is required to upgrade
+# from Squeeze to Wheezy.  This may be removed after Wheezy.
+if [ -h $DOCLINK ]; then
+  rm -f $DOCLINK
+fi

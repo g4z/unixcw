@@ -1,0 +1,172 @@
+This is README file for unixcw project.
+
+unixcw is a project providing libcw library and a set of programs
+using the library: cw, cwgen, cwcp and xcwcp. The programs are
+intended for people who want to learn receiving and sending Morse
+code. unixcw is developed and tested primarily on GNU/Linux system.
+
+
+
+
+
+For general description of changes see HISTORY file.
+For detailed description of changes see NEWS file.
+For details on building unixcw from sources see INSTALL file.
+For acknowledgements see THANKS file.
+For full text of software license see COPYING file.
+
+
+
+
+
+The heart of the unixcw package is libcw library.  It offers the
+following basic CW services to a caller program:
+
+ - Morse code character translation tables, and lookup functions
+ - Morse code low-level timing calculations
+ - A 'sidetone' generation and queueing system, using either the system sound
+   card or the console speaker
+ - Optional keying control for an external device, say a transmitter, or an
+   oscillator
+ - CW character and string send routines, tied in with the character lookup
+ - CW receive routines, also tied in to the character lookup
+ - Adaptive speed tracking of received CW
+ - An iambic keyer, with both Curtis 8044 types A and B timing
+ - Straight key emulation
+
+
+
+
+
+The library uses signals and threads to create a background task in
+which it performs the majority of its work, leaving the main program
+free to handle other tasks.  For example, the simplest CW sending
+program that uses the library looks like this (compile it with
+"gcc -lcw example.c"):
+
+
+#include <libcw.h>
+
+int main ()
+{
+        /* Library initialization */
+        cw_generator_new(CW_AUDIO_SOUNDCARD, NULL);
+        cw_generator_start();
+
+        /* Start the string sending in the background. */
+        cw_send_string("Hello, world");
+
+        /* Wait for the string send to complete. */
+        cw_wait_for_tone_queue();
+
+        /* Library cleanup */
+        cw_generator_stop();
+        cw_generator_delete();
+
+        return 0;
+}
+
+
+Instead of the cw_wait_for_tone_queue() call, this program could
+instead handle any other work it has to do, asynchronously from the CW
+library's sending.
+
+As well as the handful of applications included in unixcw, the
+following types of programs might also use libcw as their core:
+
+ - a fully graphical CW send and receive station
+ - a 'CWbiff' that announces incoming email sender in CW
+ - an offline CW reader program, capable of decoding CW from MP3 or
+   other audio file formats
+ - a simple Iambic keyer for an external transmitter, using the mouse
+   buttons as the keyer paddles
+ - a more comprehensive CW tutor program
+ - an automated Morse Code testing application
+
+libcw is written in C for easy portability and use.
+
+
+
+
+
+In addition to libcw, the package comes with four basic applications:
+
+ - cw: a CW sending 'engine' that reads characters from stdin, sounds
+   them on either the sound card or the console speaker, and echoes
+   them to stdout.
+
+ - cwgen: a simple random character generator that can be used as a
+   feed for cw.  For example:
+
+               cwgen | cw
+
+ - cwcp: a curses-based program that generates groups of characters
+   from selected sets, words, and CW abbreviations randomly, and
+   sounds them using libcw.  It owes much to CP222.EXE, by VU2ZAP.
+
+ - xcwcp: a CW tutor program for X Window environment.  It offers the
+   same random and keyboard sending as 'cwcp', and in addition can
+   read CW that sent to it using the keyboard or mouse as a keyer,
+   making it useful for sending as well as receiving practice.
+
+
+
+
+
+Relationship between version of unixcw package and version of libcw is
+following:
+
+    unixcw      libcw      release date
+    3.0         3.0.0      2011.12.13
+    3.0.1       3.0.1      2012.01.08
+    3.0.2       3.0.1      2012.06.18
+    3.1.0       4.0.0      2012.06.30
+    3.1.1       4.1.1      2012.07.04
+    3.2.0       5.0.0      2013.01.11
+    3.3.0       6.0.1      2013.12.10
+    3.3.1       6.1.1      2014-04-23
+    3.4.0       6.2.1      2014-11-11
+    3.4.1       6.3.1      2015-01-02
+    3.4.2       6.4.1      2015-06-XX
+
+
+
+
+Primary development platform for unixcw is Debian GNU/Linux. An effort
+has been made to compile and test at least parts of some versions of
+unixcw package on following platforms:
+ - FreeBSD 9.3
+ - FreeBSD 10.0
+ - OpenBSD 5.5
+ - Alpine Linux 3.1
+See INSTALL file for more information about compilation on different
+OSes.
+
+
+
+
+
+unixcw is distributed under the terms of GNU GPL license, version 2 or
+later.  See COPYING for details.
+
+
+
+
+
+unixcw was developed by Simon Baldwin, G0FRD <simon_baldwin@yahoo.com>.
+unixcw is developed by Kamil Ignacak <acerion@wp.pl>.
+
+
+
+
+
+Website: unixcw.sf.net
+
+
+
+
+
+Comments, questions, bug reports:
+ - create ticket: http://sourceforge.net/p/unixcw/tickets/, or
+ - write directly to acerion@wp.pl
+I reserve a right to two months of delay to reply.

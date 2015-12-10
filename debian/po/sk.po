@@ -1,0 +1,71 @@
+# Slovak translation of unixcw.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the unixcw package.
+# Ivan Masár <helix84@centrum.sk>, 2009, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: unixcw\n"
+"Report-Msgid-Bugs-To: unixcw@packages.debian.org\n"
+"POT-Creation-Date: 2012-01-11 06:51+0100\n"
+"PO-Revision-Date: 2012-01-11 13:47+0100\n"
+"Last-Translator: Ivan Masár <helix84@centrum.sk>\n"
+"Language-Team: Slovak <debian-l10n-slovak@lists.debian.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid "Run cwcp with root privileges?"
+msgstr "Spúšťať cwcp s oprávnením používateľa root?"
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cwcp can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Ak ho spustíte so zvýšenými oprávneniami (čo sa neodporúča), cwcp môže "
+"vydávať zvuky prostredníctvom pípnutí konzoly."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Please choose whether this should be achieved by giving the executable the "
+"\"setuid\" attribute."
+msgstr ""
+"Prosím, zvoľte, či sa to má dosiahnuť udelením atribútu „setuid“ "
+"spustiteľnému súboru."
+
+#. Type: boolean
+#. Description
+#: ../cwcp.templates:2001 ../cw.templates:2001
+msgid ""
+"Alternatives include running the program with sudo or eliminating this issue "
+"completely by using output via a sound card instead of the buzzer."
+msgstr ""
+"Medzi alternatívy patrí spúšťanie programu pomocou sudo alebo úplná "
+"eliminácia problému použitím výstupu prostredníctvom zvukovej karty namiesto "
+"pípnutí konzoly."
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid "Run cw with root privileges?"
+msgstr "Spúšťať cw s oprávnením používateľa root?"
+
+#. Type: boolean
+#. Description
+#: ../cw.templates:2001
+msgid ""
+"If it is run with elevated privileges (which is not recommended), cw can "
+"produce sounds using the console buzzer."
+msgstr ""
+"Ak ho spustíte so zvýšenými oprávneniami (čo sa neodporúča), cw môže vydávať "
+"zvuky prostredníctvom pípnutí konzoly."

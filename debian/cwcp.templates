@@ -1,0 +1,22 @@
+# These templates have been reviewed by the debian-l10n-english
+# team
+#
+# If modifications/additions/rewording are needed, please ask
+# debian-l10n-english@lists.debian.org for advice.
+#
+# Even minor modifications require translation updates and such
+# changes should be coordinated with translators and reviewers.
+
+Template: cwcp/suid_bit
+Type: boolean
+Default: false
+_Description: Run cwcp with root privileges?
+ If it is run with elevated privileges (which is not recommended), cwcp
+ can produce sounds using the console buzzer.
+ .
+ Please choose whether this should be achieved by giving the
+ executable the "setuid" attribute.
+ .
+ Alternatives include running the program with sudo or eliminating this
+ issue completely by using output via a sound card instead of the
+ buzzer.

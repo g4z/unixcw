@@ -1,0 +1,718 @@
+2015-06-14 Kamil Ignacak
+	* pre-release: updating information in selected files before
+	release (updating version numbers, adding notes new releases etc.)
+
+2015-03-19 Kamil Ignacak
+	* fixes: Few minor changes in main code and test code that solve
+	problems found during tests on FreeBSD 10.
+
+2015-03-13 Kamil Ignacak
+	* generator: fixing one possible cause of segfaults: limiting
+	number of executions of cw_gen_silence_internal() function that
+	somewhere down in call stack also called pthread_kill(). On some
+	occasions (during library cleanup) the thread id passed to
+	pthread_kill becomes invalid, and any subsequent calls to
+	cw_gen_silence_internal() resulted in segfault.
+
+	I have discovered this problem when testing src/cw/cw on Alpine
+	Linux. Other parts of unixcw package may have been affected by
+	this problem as well. I don't know how old the problem was (since
+	when it was possible to create segfaults when exiting from cw on
+	Alpine Linux). The fix was tested on Alpine Linux and on Debian
+	GNU/Linux.
+
+2015-03-10 Kamil Ignacak
+	* tests: testing unixcw on Alpine Linux (with musl libc). Fixing
+	problems in cw_oss and cw_gen modules.
+
+	One important change in libcw made during tests on Alpine Linux:
+	generator's thread function is now a joinable thread (it was a
+	detached thread until now). I don't think that it will have any
+	impact on libcw's client code, but I thought that I should mention
+	this in ChangeLog.
+
+	Also adding one (unit ?) test function to libcw_test_internal.
+
+2015-03-05 Kamil Ignacak
+	* cw_gen: today I've added second and third brand new unit test
+	function for cw_gen module in libcw_gen.c file. At the beginning
+	of this development cycle there were zero functions defined in
+	libcw_gen.c (there were, and still are, functions testing cw_gen
+	module in libcw_test_public.c). I think that's a progress :)
+
+	During creation of these functions I had an opportunity to improve
+	code and comments of generator's base functions.
+
+2015-03-04 Kamil Ignacak
+	* asserts: base libcw is now compiled with -DNDEBUG flag by
+	default (asserts are "off"). The asserts are still "on" by default
+	in "unit tests" libcw. Asserts are switched "on" in base libcw
+	with "./configure --enable-dev".
+
+2015-03-02 Kamil Ignacak
+	* generator: First unit test intended to be executed on building
+	"make check" target.  The unit test function uncovered one error:
+	when a generator is created, then is *not* started, and then is
+	deleted, libcw called pthread_kill(&id, ...) on uninitialized id
+	in cw_gen_delete(). This caused a program to crash.  This has been
+	fixed by adding a flag to cw_gen_t and additional code in
+	cw_gen.c.
+
+2015-02-25 Kamil Ignacak
+	* tq: improving handling of tones in general, and "forever" tones
+	in particular.
+
+	I have created CW_TONE_INIT and CW_TONE_COPY macros that
+	(re-)initialize a tone variable (all of its fields), and that copy
+	values of fields from one cw_tone_t variable to other. There are
+	so many places where I need to set values of fields of cw_tone_t,
+	that I thought it would be beneficial to have some sort of
+	constructor/initializer. A full constructor that mallocs() tone
+	would be too much, but simple macro doing assignments is quite ok.
+
+	Until now the tone queue manager and generator used special value
+	CW_AUDIO_FOREVER_USECS assigned to cw_tone_t.usecs to indicate
+	that a tone is "forever" tone. This had one downside: a regular,
+	plain variable had special value that I had to constantly be aware
+	of. Now the "usecs" is again a regular variable - nothing more
+	than the length of tone. Information whether or not a tone is
+	"forever" tone is now conveyed by new field in cw_tone_t:
+	cw_tone_t.forever.
+
+2015-02-23 Kamil Ignacak
+	* cw_gen: Lots of small updates. Mostly in comments, but I have
+	also removed few unused (commented out) lines of code and renamed
+	some internal functions. One noticeable change was in
+	cw_generator_set_tone_slope() - some corner cases of handling
+	function's arguments were cleared in function's top level
+	comments, and implementation has been updated accordingly.
+
+2015-02-22 Kamil Ignacak
+	* key, generator, tone queue: Small improvements at intersection
+	of these modules. One example: after changing third argument to
+	cw_key_ik_enqueue_symbol_internal(), the function no longer has to
+	explicitly refer to length of Space/Dot/Dash stored in
+	generator. Enqueueing symbols with proper length is now
+	exclusively job of generator (at least in case of this function
+	call).
+
+	Also modifying names of some variables (so that they follow a
+	convention used already in receiver) and functions (so that their
+	purpose is more obvious).
+
+	So in a nutshell: small improvements in key, generator and tone
+	queue.
+
+2015-02-22 Kamil Ignacak
+	* libcw.c: after populating the file with "global" functions for
+	generator, tone queue and receiver modules, I have also moved here
+	the "global" functions from cw_key module.
+
+	At this point the file contains definitions of global variables
+	cw_receiver, cw_generator and cw_key (cw_key is static in this
+	file).
+
+2015-02-19 Kamil Ignacak
+	* libcw.c: I have (re)created the file. It will contain all the
+	functions that use global variables cw_generator, cw_receiver and
+	maybe cw_key as implicit arguments. After moving such functions
+	from other modules into libcw.c, other modules major should be
+	completely free of global variables, and should only contain
+	functions that operate on generators, receivers and keys as
+	explicit function arguments.
+
+	Then the function will have the old interface, and the new
+	interface. And it will be easy to have multiple generators (or
+	receivers) in the same application.
+
+2014-12-30 Kamil Ignacak
+	* valgrind: running valgrind on libcw_test_internal reveals few
+	small problems in test code, and one small problem in "production"
+	code. Fixing the problems. Thanks valgrind!
+
+2014-12-20 Kamil Ignacak
+	* tests: moving as much code as possible from libcw_test_public.c
+	to respective module files. The tests that are still in
+	libcw_test_public.c test library functions that depend on
+	different modules (mostly tone queue and generator). Those library
+	functions that can be tested in separation are tested in their
+	module files.
+
+	This should shorten the libcw_test_public.c file and ensure that
+	test functions are defined as close to library functions as
+	possible, so that library code and related test code are grouped
+	together (thus improving modularization of library).
+
+	There is still some work to be done in this area, but a good
+	progress has been made. In the process of moving test functions to
+	their modules, some test functions have been improved a bit.
+
+2014-12-02 Kamil Ignacak
+	* tests: improving unit tests for receiver module.  The receiver's
+	test code from libcw_test_public.c is being slowly moved to
+	libcw_rec.c. receiver module is fairly independent from a
+	generator or audio sinks, so it's ok to mat the tests internal in
+	the libcw_rec.c file. They can be executed with simple "make
+	check", and the execution takes very little time.
+
+2014-11-28 Kamil Ignacak
+	* tests: improving unit tests for receiver module. Working on
+	functions that will automatically generate test data (input data
+	for cw_start_receive_tone() and cw_end_receive_tone() functions)
+	with different parameters
+
+2014-11-24 Kamil Ignacak
+	* tests: Test executables for libcw now accept -m option, which
+	allows me to specify libcw module(s) to be tested. Option's values
+	are:
+	'r' - receiver
+	't' - tone queue
+	'g' - generator
+	'k' - Morse key
+	'o' - other
+
+	* cwutils: reformatting code in src/cwutils/cmdline.c. No
+	functional changes.
+
+2014-11-19 Kamil Ignacak
+	More changes in receiver module. Refactoring and moving public
+	functions' code to _internal() functions that accept pointer to
+	receiver as first argument. Updating comments.
+
+	If you depend on Receiver State names (strings starting with RS_)
+	printed by library's debug messages, you may want to check changed
+	values of RS enum and corresponding strings on top of libcw_rec.c
+	- they have been changed.
+
+	Making some terminology changes in libcw_rec.c - some things are
+	now named in more consistent way (variable names, names of
+	things).
+
+2014-11-12 Kamil Ignacak
+	Proceeding with changes, simplifications and refactoring in
+	receiver module. Generator module is also affected.
+
+2014-11-11 Kamil Ignacak
+	Creating new module: libcw_rec. Moving code related to receiver
+	from libcw.c to libcw_rec.c. Moving other code from libcw.c to
+	other modules. libcw.c has been emptied and is now removed.
+
+2014-08-17 Kamil Ignacak
+	* build system: changes in build system files (configure.ac and
+	src/libcw/Makefile.am) introduced to improve compilation on
+	OpenBSD 5.5.
+
+2014-08-16 Kamil Ignacak
+	* README: reviewed contents of README file. Lots of stuff
+	accumulated in the file over the time, making a first-to-read
+	document a bit too large. Moved parts of the file to INSTALL,
+	THANKS and HISTORY files.
+	* INSTALL: reviewed contents of INSTALL file. Less unnecessary
+	sentences, more details. Also added a generic installation
+	instructions as usually found in INSTALL files.
+	* files: added new files to dist package:
+	THANKS
+	HISTORY
+
+	added new files to git repository only:
+	qa_build_debian.sh
+	qa_compile_headers.sh
+	qa_test_configure_flags.sh (well this one is moved from ./tools)
+	qa_valgrind_cwcp.sh
+
+2014-08-12 Kamil Ignacak
+	* libcw/utils: three more functions have been moved to
+	libcw_utils: cw_version, cw_license and cw_get_audio_system_label,
+	because, well, these functions look like utility functions.
+	* libcw/signal: I couldn't resist and I moved signal-related
+	functions from libcw.c to new module: libcw_signal. Bodies of
+	these functions have not been modified, so you can compare
+	contents of libcw_signal.c with contents of libcw.c from last
+	release to see how the move has been done.
+	* libcw/generator: I have moved some more code from libcw.c to
+	libcw_gen.c. There is still some generator-related code left in
+	libcw.c, but I promise not to touch it in this release. I think
+	that I have enough of moving code.
+
+	There is still some code left in libcw.c. Big part of this code is
+	related to receiver. The next big task in my work on libcw should
+	be understanding (or at least attempting to understand) the
+	receiver code and its relation to other modules (especially to
+	libcw_gen and libcw_key modules). Receiver code is one of last
+	areas that I haven't really tried to digest.
+
+2014-08-07 Kamil Ignacak
+	* QT4: Simplifying configuration of QT4 in configure.ac: using
+	PKG_CHECK_MODULES instead of custom shell script. Tests on Linux
+	and FreeBSD ongoing.
+	* FreeBSD & clang 3.3: successful build of "make check"
+	target. Successful execution of libcw_test_simple_gen and
+	libcw_test_internal. Tests on FreeBSD ongoing.
+
+2014-08-06 Kamil Ignacak
+	* FreeBSD: I managed to configure and build the package on FreeBSD
+	10. It worked! I only had to slightly adjust configure.ac and
+	src/libcw/Makefile.am (dl library). There is still a bit of work
+	on FreeBSD left to do in configure.ac.
+	* OSS: During tests of OSS on FreeBSD I've found a bug that
+	prevented libcw from correctly opening OSS sink (unnecessary
+	function call). This bug has been fixed. This fix should affect
+	Linux and FreeBSD.
+
+2014-08-02 Kamil Ignacak
+	* libcw/key: lots of changes in libcw_key module. After some
+	trials and errors I've implemented a code with single data type
+	for all types of code (cw_key_t) while maintaining separate states
+	of straight key, iambic keyer, and tone-queue-key.
+
+	The key and code handling it is not visible to users of public
+	API. Behaviour of public API functions has not been changed.
+
+2014-07-28 Kamil Ignacak
+	* libcw: I think that for now I'm done with splitting libcw.c into
+	parts. In about a week I have moved large portions of code from
+	libcw.c to separate files. Different parts of libcw.c,
+	implementing different functionality, are now in their own *.c/*.h
+	files. These new modules are:
+        libcw_data.c
+	libcw_gen.c
+        libcw_key.c
+        libcw_tq.c
+	libcw_utils.c
+
+	It's very possible that in future I will move some more code from
+	libcw.c to new files.
+
+	Up until now the code in new files is pretty much the same as it
+	was in libcw.c (the same order of functions, the same bodies of
+	functions, pretty much copy-and-paste). If you want to check
+	correctness of moving the functions to new files, you could do
+	this by comparing libcw/*.c files from 28.07.2014 with original
+	libcw.c from previous release (I did such comparing using KDE
+	application 'kompare', everything looks ok to me).
+
+	After today I may make some changes in *.c files that will make
+	the movement of code less transparent (but of course keeping
+	everything in git).
+
+
+	In addition to moving parts core functionality of the library from
+	libcw.c to new files, I have also reviewed test code and build
+	targets in Makefile.am for building test applications. You can now
+	build three test executables with "make check":
+        libcw_test_internal
+        libcw_test_public
+        libcw_test_simple_gen
+
+	C code used to build these test executables is now a bit more
+	simple - it uses a bit less #ifdefs, and main() function for each
+	executable is in its own separate *.c file. There is no main()
+	function in libcw.c file anymore.
+
+
+	The main goal for the splitting of libcw.c was to introduce more
+	order into the project.  libcw.c file contained almost 10k
+	LOC. Almost all modules (with exception of audio systems) were in
+	a single file. Functions implementing these modules were sometimes
+	mixed. Mental navigation in the file was becoming difficult. The
+	split should help me solve these problems.
+
+
+	The description above was given to explain why and how the libcw.c
+	has been modified so heavily in this release. The code is still in
+	*.c files. No functionality has been removed. No functions have
+	been added or removed.
+
+	Looking from outside, the library hasn't changed. It has the same
+	set of functions implementing the same functionality. The libcw.h
+	and libcw_debug.h files haven't changed at all. Changes to libcw
+	in this release, from users' and developers' point of view, are
+	none.
+
+2014-07-26 Kamil Ignacak
+	* cwcp: fixing a stupid error that I introduced in one of previous
+	releases: cwcp didn't use "combined" argv, so it didn't process
+	CWCP_OPTIONS from env. Now it should work.
+
+	Today's commit ends my main part of work on cwcp code. There were
+	three main changes made to cwcp: first: fixing the bug mentioned
+	above; second: calling few delwin()s to plug memory leaks; third:
+	bringing the code into shape when it comes to project's
+	indentation and comments style.
+
+2014-07-23 Kamil Ignacak
+	* libcw/test code: moving some code related to testing from
+	libcw.c into other files.
+
+	This little change triggered a larger change in test utilities for
+	libcw. Now we have three libcw test executables built with "make
+	check": libcw_test_internal, libcw_test_public, and
+	libcw_test_simple. Each of them has its own .c file with its own
+	main(). There is no main() function in libcw.c anymore.
+
+	Explicit "standalone" target has been removed from
+	src/libcw/Makefile.am. It has been replaced by libcw_test_simple
+	executable built with "make check".
+
+2014-07-22 Kamil Ignacak
+	* libcw/keying code: Moving most of code related to iambic keyer,
+	straight key, and general keying control into new file:
+	libcw_key.c.
+
+	Having separate things in separate files (instead of having
+	everything in a single 10kLOC file) should make some things easier
+	for me as a maintainer of libcw.
+
+2014-07-21 Kamil Ignacak
+	* libcw/tone queue: Moving most of code related to tone queue into
+	new file: libcw_tq.c.
+	* libcw/data: Moving code related to characters (and their
+	representation), prosigns and phonetics to new file: libcw_data.c
+
+	Having separate things in separate files (instead of having
+	everything in a single 10kLOC file) should make some things easier
+	for me as a maintainer of libcw.
+
+2014-04-23 Kamil Ignacak
+	* committing changes before a new release; the new release
+	contains a fix of problem reported by Pino Zollo ZP4KFX. Se NEWS
+	file for more details.
+
+2013-12-08 Kamil Ignacak
+	* cwgen: improving seed for random function.
+
+2013-10-26 Kamil Ignacak
+	* clocking of iambic keyer. There has been a problem with clocking
+	iambic keyer when the state machine for the keyer was in
+	motion. The clocking has been receiving imprecise timestamps, and
+	so recognizing characters (e.g. in xcwcp's receiver) was
+	difficult.  Today I've committed code that fixes timing problems
+	in clocking iambic keyer.
+
+	The code updates receiver's timer with lengths of dequeued tones
+	in cw_generator_dequeue_and_play_internal(). Receiver uses this
+	updated timer as an argument to cw_{start|stop}_receive_tone(),
+	and since the timer is updated with exact time values, the lengths
+	of spaces and marks are more precise. Fixing the problem also
+	required some changes in xcwcp/receiver.cc and
+	xcwcp/application.cc.
+
+2013-10-22 Kamil Ignacak
+	* unit tests: adding first unit test in cwutils/dictionary module.
+
+2013-10-19 Kamil Ignacak
+	* unit tests: adding "tests::" and "testedin::" markings in
+	functions' top level comments to indicate which functions are
+	tested in which unit tests. Also rewriting parts of bodies of unit
+	tests in libcwtest.c so that printout of test results is a bit
+	cleaner.
+
+2013-10-17 Kamil Ignacak
+	* xcwcp: reviewing, commenting and reformatting code in
+	receiver.cc - the file that uses libcw's receiver functionality.
+
+2013-10-13 Kamil Ignacak
+	* receiver code: more changes and reviewing of receiver code. Unit
+	tests for two functions in recever section:
+	cw_timestamp_validate_internal() and
+	cw_timestamp_compare_internal().  I've reversed order of arguments
+	for the first function, so the order now matches (output, input)
+	pattern of parameters order.
+
+2013-10-10 Kamil Ignacak
+	* testing: some improvements in code testing receiving functions
+	in libcwtest.c: simplifications, comments, refactoring.
+	* refactoring in libcw.c: moving some free variables related to
+	sending and receiving of Morse code into generator and receiver
+	variables, respectively.
+
+2013-10-06 Kamil Ignacak
+	* tone queue: using "len" property to simplify management and
+	monitoring of tone queue and its capacity. Code is now a bit
+	simpler.
+
+2013-10-05 Kamil Ignacak
+	* tone queue: adding "len" property to tone queue. Adding and
+	using it should simplify some aspects of queue management.
+
+2013-10-04 Kamil Ignacak
+	* tone queue: still working with capacity, head and tail. Updated
+	data type for the three variables, it will be uint32_t.
+	* debugging: introduced cw_assert() macro that should improve
+	debugging and assertions.
+
+2013-09-12 Kamil Ignacak
+	* tone queue: more changes related to "capacity", and additionally
+	"head" and "tail" properties of tone queue. No functionality
+	changed yet, just some minor improvements, comments and tests.
+
+2013-09-09 Kamil Ignacak
+	* tone queue: refactoring code handling "capacity" of tone queue;
+	two purposes: improved "testability" and possibility of assigning
+	non-default capacities of tone queues.
+
+2013-07-24 Kamil Ignacak
+	* FreeBSD patches: applying patches for FreeBSD, provided by Diane
+	Bruce (thank you!). Thanks to the patches the ./configure script
+	now should support two new flags:
+	--with-qt-includes=<path>
+	--with-qt-libraries=<path>
+
+2013-03-18 Kamil Ignacak
+	* fixes: Thomas Beierlein has reported that some combinations of
+	'--enable-*'/'--disable-*' flags result in a code that fails to
+	compile. He also provided a  patch that fixes it. I've created
+	a tool ('unixcw/tools/test_configure_flags.sh') that tests all
+	combinations of configure flags, which also detected one more
+	faulty configuration, in addition to the ones discovered by Thomas.
+
+2013-01-24 Kamil Ignacak
+	* unit tests: src/libcw/libcwtests.c has been heavily refactored.
+	The work on the file will continue to ensure that public API of
+	libcw is tested as thoroughly as reasonably possible.
+	* new functions: adding new functions: cw_character_is_valid()
+	(replaces cw_check_character()) and cw_string_is_valid()
+	(replaces cw_check_string()). The old functions are still available,
+	but have been marked as deprecated.
+
+2013-01-03 Kamil Ignacak
+	* fixes: fixing a function in libcw that attempts to open audio
+	device. Simple improvement of logic conditions makes it less
+	possible (under certain circumstances) that the function will fail
+	to open a device.
+	* pre-release: new version of unicw will have version number
+	3.2.0.  New version of libcw will have soname version 5.0.0.
+	Implementing necessary changes related to the two pieces of
+	information. Also attempting to build debian packages from unixcw
+	source package, and fixing bugs and upgrading files in the
+	process. Various other updates of files related to pre-release
+	activities.
+
+2012-12-31 Kamil Ignacak
+	* distribution: src/libcw/libcw_debug.h is now marked as file to
+	be installed along with libcw.h
+	* generator: improved behaviour of cw_generator_new() in cases
+	when the function failed to create a generator. Now if the
+	function fails, the generator variable is fully 'de-initialized'.
+
+2012-12-29 Kamil Ignacak
+	* tone queue: improving the method of queuing a space character.
+	This helps me avoid problems in some corner case (when a single
+	space is queued, and tone queue's low watermark is set to 1).
+	This problem has been spotted when testing cwdaemon.
+
+	* compilation errors: unixcw/src/libcw/libcw.h: Rewriting three
+	cases of usage of "__attribute__ ((deprecated(msg)))", some
+	versions of gcc may not support "deprecated" with string argument
+	(error reported by user).
+
+2012-11-21 Kamil Ignacak
+	* debugging: I have reviewed list of CW_DEBUG_* flags. Some of the
+	names of the flags have changed. If you are using any of these flags,
+	you need to review your code.
+
+	debug module now provides updated macro printing debug messages.
+	The macro now accepts 'severity level' flag (debug / info /
+	warning / error).  There are now three permanent debug objects
+	provided by libcw. Two of them are only for debug purposes, the
+	third one is for general use. Behaviour of the objects may be
+	controlled by the severity flag, as well as by debug flags
+	defining areas of code, for which the debugging is active.
+
+2012-09-17 Kamil Ignacak
+	* libcw: code implementing support for various audio backends has
+	been moved from libcw.c to new files. That way we have less mess
+	in libcw.c, better separation of modules, and cleaner space for
+	improvements in code implementing support for audio backends (e.g.
+	advanced API of PulseAudio).
+
+2012-09-11 Kamil Ignacak
+	* debug: adding src/libcw/libcw_debug.py - a tool that transforms
+	timing information that may be printed by debugged libcw
+	applications.  The transformed timing information may be then
+	plotted by plotting programs to gain insight into inner workings
+	and time dependencies of different parts of libcw applications.
+	The tool is rather imperfect and may need manual adjustments for
+	every new situation, but hopefully it will turn out to be useful.
+	* cwcp: refactoring cwcp.c, adding comments, fixing one small
+	annoyance.
+
+2012-08-15 Kamil Ignacak
+	* tone slopes: libcw now can generate tones with slopes shaped as
+	sine function or as raised cosine function. The 'raised cosine'
+	slope is now default. Until now, shape of slopes has been calculated
+	every time a tone has been generated. Now the shape is calculated
+	only when some parameters of generator (volume, sample rate, length
+	of slope) change. This should improve performance of libcw by one or
+	two percents (no benchmarks were performed :/ ).
+
+2012-08-11 Kamil Ignacak
+	* debug: Adding src/libcw/libcw_debug.c module. Currently the module
+	implements only debug events with time stamps, but most probably all
+	debugging facilities will be moved to the module in future.
+
+2012-08-06 Kamil Ignacak
+	* build system configuration: fixing faulty logic checking
+	"--disable-feature" flags in configure.ac. Bug reported by Thomas
+	Beierlein. Thanks Thomas!
+
+2012-07-04 Kamil Ignacak
+	* libcw: fixing problem with interlocks in threaded code; since
+	this is an important fix, I will have to prepare new release of
+	unixcw.
+
+2012-05-27 Kamil Ignacak
+	* libcw: fixing an error with overflowing n_samples. It was spotted
+	during some tests performed when reviewing files before new release.
+	I guess that means that I'm in a phase of final tests of the package.
+	* unixcw: bunch of changes that prepare the package for new release.
+	New release number of unixcw will be 3.1.0, new soname of libcw will
+	be 4:0:0.
+
+2012-05-21 Kamil Ignacak
+	* libcw: Implementing loading of PulseAudio and ALSA libraries at
+	run-time (loading symbols from the two libraries - to be exact),
+	instead of doing it at compile time (load time?).
+	This means that support for PulseAudio and/or ALSA can be enabled
+	during compile time, but user doesn't have to have PulseAudio and/or
+	ALSA installed on target system in order to install libcw. In other
+	words: PulseAudio and ALSA libraries are now recommended, but not
+	required.
+	This does not mean that the two libraries are somehow deprecated by
+	libcw. It just means that installing libcw doesn't have to mean a
+	necessity of installing too much additional packages.
+	OSS - by its nature - doesn't have to be loaded to be used by libcw,
+	it's just open(), write() and close(), so handling OSS is much
+	easier and doesn't involve run time loading (the description is
+	rather simplified, but still OSS is a different story than PulseAudio
+	and ALSA libraries).
+
+2012-05-17 Kamil Ignacak
+	* libcw/pulseaudio: some general improvements in PulseAudio code;
+	there may be a slight improvement in responsiveness, as I've added
+	code that configures buffering attribute passed to pa_simple_new().
+	The configuration is very simple (read: code copied from the net),
+	I suspect that it can be improved.
+
+	* libcw/Null: Adding support for Null output.
+	Null output is an empty device that doesn't produce a sound. It
+	doesn't use any physical or logical device to output a sound.
+	Its only function is to provide a timing information: it acts as
+	if it accepts and plays x microseconds of sound, and it returns
+	after the x microseconds.
+	I'm not sure if this will turn out useful, maybe yes, maybe no.
+	Currently it is implemented using single call to usleep(), without
+	any checks of return value. This should be improved.
+	Code from cwutils has been changed to use/provide functionality
+	related to the new output.
+
+2012-05-14 Kamil Ignacak
+	* libcw/tone queue: cw_generator_write_sine_wave_internal(): using
+	cw_signal_wait_internal() (together with pthread_kill() in enqueue
+	function) instead of usleep() - this should decrease CPU usage in idle
+	state; still needs to be tested and verified, but - overall - good
+	idea; I think that this solution existed in libcw before I've started
+	slaughtering the code, so consider this just rediscovering of a clever
+	code;
+
+2012-05-10 Kamil Ignacak
+	* libcw/console: Console output now works correctly, playing nicely
+	with queue()/dequeue() and the generator.
+
+2012-05-06 Kamil Ignacak
+	* cwcp/user interface: fixing small bug in code: till now modifying
+	practice time didn't work correctly, any attempts to do so resulted
+	in resetting the time to zero. Now this is fixed.
+
+2012-05-01 Kamil Ignacak
+	* libcw/experimental code: removed code that was disabled when
+	CW_DEV_EXPERIMENTAL_WRITE was set to 1.
+
+2012-05-01 Kamil Ignacak
+	* libcw/audio: more changes in libcw; I'm decreasing dependency
+	on timers, and increasing dependency on tone queue. I could put
+	it that way: there are less places where time periods are dictated
+	by itimers, and more places where time periods are measured by
+	audio systems' 'write' functions. This way I am sure that when I'm
+	sending X samples to audio sink, it - given sample rate Y - results
+	in Z microseconds of sound.
+	This seems like a good concept, it works well so far. I think that
+	it will me impossible (and impractical) to get rid of all timers,
+	but for generating audio - it works well.
+	There may be a problem with console buzzer, as there is no audio
+	sink that would accept X samples, but already I have an idea how
+	to solve this.
+	I've been using CW_DEV_EXPERIMENTAL_WRITE definition to enable new,
+	experimental code, and disable old code. Since the new, experimental
+	code works so well, I will completely get rid of the old code soon.
+
+2012-04-25 Kamil Ignacak
+	* libcw/ALSA: the problem described below has been solved, but
+	at a cost of significant changes in how a Morse code sound is
+	generated (timers are no longer used). This will almost certainly
+	affect other parts of libcw (e.g. Morse keys handling), but it has
+	advantages: timing of ALSA sound is (should be - to be tested)
+	perfect, and I can easily add support for PulseAudio. (this change
+	has been made and committed earlier, somewhere between 21.04 and
+	24.04, I'm just describing it now).
+	* libcw/PulseAudio: Adding support for PulseAudio.
+	PulseAudio only works with "experimental write" enabled, so there
+	is no way that I can have both PulseAudio and old algorithm for
+	generating audio. Either I will have to refactor/refresh/rework
+	rest of libcw.c (and then have PulseAudio), or I will leave old
+	way of generating audio (not breaking things (yet) in applications
+	using libcw, but also not having PulseAudio).
+
+2012-04-21 Kamil Ignacak
+	* libcw/ALSA: I've noticed that there is a problem with waveform
+	produced with ALSA. Dits and dashes start at correct time, but
+	they are ended incorrectly - either too soon, or too late.
+	This results in dots and dashes of incorrect length. The length
+	differences are small, but audible.
+	I have ruled out problems with itimer. itimer doesn't produce
+	perfect time intervals, but error introduced by itimer is way to
+	small to result in described problem.
+	The problem is probably related to delay introduced by
+	snd_pcm_writei().
+	I'm thinking about following solution: start generating tones (be
+	it inter-symbol silence, or the symbols (dits and dashes) themselves)
+	on signal generated by itimer, but stop generating dit/dash/silence
+	after writing specific number of samples to audio device.
+	In other words: start generating on timer events, stop generating on
+	sample counter overflow.
+	The problem doesn't seem to appear when using OSS output, perhaps
+	because sound fragment size is much smaller than ALSA period size,
+	e.g. 128 vs. 940.
+
+2012-04-15 Kamil Ignacak
+	* build system: Most important change: adding code that handles
+	--disable-xxx options passed to the script:
+	--disable-console
+	--disable-oss
+	--disable-alsa
+	--disable-cwcp
+	--disable-xcwcp
+	The options allow disabling certain functionalities of unixcw, so
+	that the package can be built on machines that don't provide some
+	functions or properties.
+	Example: unixcw 3.0.1 can't be compiled on hurd-i386 because of
+	this error from configure script:
+	"configure: error: Cannot find either sys/kd.h, sys/vtkd.h, or sys/kbio.h"
+	At lease one of these headers is needed for console buzzer support.
+	With new code in configure, compilation of code working with console
+	buzzer can be disabled.
+	Similarly, user can now disable compilation of OSS-related code on
+	platforms that no longer provide OSS.
+	Functionality can be disabled explicitly (with command line option),
+	or implicitly - if any of tests performed by configure script fails.
+	Changes described above required some modifications of libcw.c file.
+	Also added --enable-dev.
+
+	Build system now uses Makefile.am and Makefile.in files used/generated
+	by Automake. Adding two calls to configure: AM_INIT_AUTOMAKE (build
+	system now uses Automake to handle Makefile files), and
+	AC_PROG_LIBTOOL (libtool is now used to create libraries).
+
+	Build system now supports "make distcheck" target.
+
+	Build system now depends on libtool.

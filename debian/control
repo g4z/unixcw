@@ -1,0 +1,75 @@
+Source: unixcw
+Section: hamradio
+Priority: optional
+Maintainer: Debian Hamradio Maintainers <debian-hams@lists.debian.org>
+Uploaders: Kamil Ignacak <acerion@wp.pl>, Kamal Mostafa <kamal@whence.com>
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>=7), libasound2-dev, libpulse-dev, libqt4-dev, libncurses5-dev, po-debconf, autotools-dev, mawk|gawk, dpkg-dev (>= 1.16.1~)
+Homepage: http://unixcw.sourceforge.net/
+
+Package: libcw6
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: unixcw, libcw3, libcw4, libcw5
+Breaks: unixcw, libcw3
+Suggests: cw, cwcp, xcwcp
+Description: Morse code tutor - shared library
+ The unixcw project provides support for learning to use Morse code.
+ .
+ This package provides shared library files to handle Morse code
+ signals and to generate sound on the console buzzer or a sound card
+ through OSS, ALSA or PulseAudio.
+
+Package: libcw6-dev
+Section: libdevel
+Architecture: any
+Depends: libcw6 (= ${binary:Version}), ${misc:Depends}
+Replaces: unixcw-dev, libcw3-dev, libcw4-dev, libcw5-dev
+Breaks: unixcw-dev, libcw3-dev
+Description: Morse code tutor - development files
+ The unixcw project provides support for learning to use Morse code.
+ .
+ This package provides the static library, headers, and manual page for
+ development of programs that handle (i.e. send and receive) Morse code.
+
+Package: cw
+Architecture: any
+Depends: libcw6, ${shlibs:Depends}, ${misc:Depends}, debconf|debconf-2.0
+Description: Morse code tutor - command line user interface
+ The unixcw project provides support for learning to use Morse.
+ .
+ This package provides two executables:
+  * cw - a simple command line application that converts key-presses
+    to Morse code that can be heard through the console buzzer or a
+    sound card;
+  * cwgen - a program that generates groups of random characters for
+    Morse code practice, which can be piped to the cw program.
+ .
+ It also includes example files (with the extension "cw") containing
+ commands which can be used to change properties such as the speed,
+ tone, and spacing of characters.
+
+Package: cwcp
+Architecture: any
+Depends: libcw6, ${shlibs:Depends}, ${misc:Depends}, debconf|debconf-2.0
+Description: Morse code tutor - text user interface
+ The unixcw project provides support for learning to use Morse code.
+ .
+ This package provides an interactive Morse code tutor with a
+ full-screen text-based (ncurses) user interface. It offers menu
+ selection of sending modes, and keyboard control of character
+ sounding options such as the sending speed and pitch.
+
+Package: xcwcp
+Architecture: any
+Depends: libcw6, ${shlibs:Depends}, ${misc:Depends}, debconf|debconf-2.0
+Description: Morse code tutor - graphical user interface
+ The unixcw project provides support for learning to use Morse code.
+ .
+ This package provides an interactive Morse code tutor with a Qt4
+ user interface. It allows choosing from a number of options for
+ practice, including sending random characters, random words, and
+ characters from the keyboard. It will also receive Morse code sent
+ using the keyboard or mouse as a Morse keyer, and display the
+ characters it sees.

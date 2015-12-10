@@ -1,0 +1,26 @@
+Begin4
+Title:          UnixCW
+Version:        3.4.2
+Entered-date:   2012-01-08
+Description:    UnixCW is a package of UNIX-based programs that fit together
+                to form a CW tutor program similar to CP222 by VU2ZAP.  The
+                core of the package is libcw, a general-purpose CW functions
+                library.  There are four programs in the package built around
+                this library: a simple Morse code sounding program; a small
+                random character generator; a curses-based Morse code tutor;
+                and a Qt4-based (X Window) Morse code tutor.  The Qt4-based
+                tutor program offers send practice as well as receive.  The
+                package includes complete man pages.
+Keywords:       CW Morse amateur radio ham tutor
+Author:         simon_baldwin@yahoo.com (Simon Baldwin, G0FRD)
+                acerion@wp.pl (Kamil Ignacak)
+Maintained-by:  acerion@wp.pl (Kamil Ignacak)
+Primary-site:   http://unixcw.sourceforge.net
+Alternate-site: none
+Original-site:  none
+Platforms:      unixcw/libcw recommends libasound2 and PulseAudio library;
+                unixcw/cwcp requires Ncurses library;
+                unixcw/xcwcp requires QT4 library;
+                GNU/Linux; may work on OpenBSD, FreeBSD;
+Copying-policy: GPL 2.0
+End

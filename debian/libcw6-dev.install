@@ -1,0 +1,24 @@
+usr/lib/libcw.a
+
+# lintian-info -t dev-pkg-without-shlib-symlink | non-dev-pkg-with-shlib-symlink:
+#   "A "-dev" package is supposed to install a "libsomething.so" symbolic
+#   link referencing the corresponding shared library. Notice how the link
+#   name doesn't include the version number -- this is because such a link
+#   is used by the linker when other programs are built against this
+#   shared library."
+#
+#   "Shared libraries are supposed to place such symbolic links in their
+#   respective "-dev" packages, so it is a bug to include it with the main
+#   library package."
+#
+# The question is how does dh know that libcw.so should be a symlink, and
+# that it should be created at some point. I can't see any explicit call
+# to "ln -s" in debian/* files... But as long as it works implicitly, I'm
+# willing to think that this is just how things should be.
+usr/lib/libcw.so
+
+usr/include/libcw.h
+usr/include/libcw_debug.h
+usr/share/man/man3
+usr/share/doc/libcw6-dev
+usr/lib/pkgconfig/libcw.pc

@@ -1,0 +1,46 @@
+unixcw was developed by Simon Baldwin, G0FRD <simon_baldwin@yahoo.com>.
+
+
+
+
+
+----------
+
+
+
+
+
+Thanks to...
+
+Kamal Mostafa, KA6MAL, for reviewing the libcw API, showing me the errors of my
+ways with 64-bit integers, and hounding me to add the adaptive receive speed
+tracking...
+
+Joop Stakenborg, PG4I, for being a willing "guinea pig" with various snapshots
+of unfinished versions of the package, for help in isolating various sound card
+problems, and for his continued enthusiasm and interest in maintaining UnixCW
+as a Debian Linux package...
+
+Paolo Cravero, IK1ZYW, for very kindly making the first sound card patch
+available for UnixCW 2.  His tone generation code is now fully embedded inside
+the CW library, and it's no exaggeration to say that without his help, there
+would still be no sound card support in UnixCW...
+
+Michael D. Ivey, for identifying a problem with CW sending rhythm when sending
+in 'Farnsworth' mode, and for taking the time and trouble to test the patches
+I sent him...
+
+Wolf-Ruediger Juergens, for ideas on implementing CW weighting...
+
+Diane Bruce and Jason L. Wright, for adding support for assorted BSD flavors...
+
+Dan Jacobson, for making improvement suggestions above and beyond the call of
+duty...
+
+And finally, everyone else who has sent feedback about UnixCW.  If not for your
+interest, and fairly frequent requests for a version that works with a sound
+card, the package would not have progressed at all.
+
+
+Simon Baldwin, G0FRD <simon_baldwin@yahoo.com>
+

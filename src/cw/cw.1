@@ -1,0 +1,619 @@
+.\"
+.\" UnixCW CW Tutor Package - CW
+.\" Copyright (C) 2001-2006  Simon Baldwin (simon_baldwin@yahoo.com)
+.\" Copyright (C) 2011-2015  Kamil Ignacak (acerion@wp.pl)
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with this program; if not, write to the Free Software Foundation, Inc.,
+.\" 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.\"
+.TH CW 1 "CW Tutor Package" "cw ver. 3.4.2" \" -*- nroff -*-
+.SH NAME
+.\"
+cw \- sound characters as Morse code on the soundcard or console speaker
+.\"
+.\"
+.\"
+.SH SYNOPSIS
+.\"
+.B cw
+[\-s\ \-\-system=\fISYSTEM\fP]
+[\-d\ \-\-device=\fIDEVICE\fP]
+[\-w\ \-\-wpm=\fIWPM\fP]
+[\-t\ \-\-tone=\fIHZ\fP]
+[\-v\ \-\-volume=\fIPERCENT\fP]
+[\-g\ \-\-gap=\fIGAP\fP]
+[\-k\ \-\-weighting=\fIWEIGHT\fP]
+.BR
+[\-e\ \-\-noecho]
+[\-m\ \-\-nomessages]
+[\-c\ \-\-nocommands]
+[\-o\ \-\-nocombinations]
+[\-p\ \-\-nocomments]
+[\-f\ \-\-infile=\fIFILE\fP]
+.BR
+[\-h\ \-\-help]
+[\-V\ \-\-version]
+.BR
+.PP
+\fBcw\fP installed on GNU/Linux systems understands both short form
+and long form command line options.  \fBcw\fP installed on other
+operating systems may understand only the short form options.
+.PP
+There are no mandatory options.
+.PP
+Options may be predefined in the environment variable \fBCW_OPTIONS\fP.
+If defined, these options are used first; command line options take
+precedence.
+.PP
+.\"
+.\"
+.\"
+.SH DESCRIPTION
+.\"
+.PP
+\fBcw\fP reads characters from an input file, or from standard input, and
+sounds each valid character as Morse code on either the system sound card,
+or the system console speaker.  After it sounds a character, \fBcw\fP
+echoes it to standard output.  The input stream can contain embedded
+command strings.  These change the parameters used when sounding the
+Morse code.
+\fBcw\fP reports any errors in embedded commands on standard error.
+.PP
+Use 'Ctrl+D' key combination to exit \fBcw\fP.
+.\"
+.\"
+.\"
+.SS COMMAND LINE OPTIONS
+.\"
+\fBcw\fP understands the following command line options.  The long
+form options may not be available in non-LINUX versions.
+.TP
+.I "\-s, \-\-system=SYSTEM"
+Specifies the way that \fBcw\fP generates tones.  Valid values
+are:
+\fInull\fP for no tones, just timings,
+\fIconsole\fP for tones through the console speaker,
+\fIalsa\fP for tones generated through the system sound card using ALSA
+sound system,
+\fIoss\fP for tones generated through system sound card using OSS sound
+system,
+\fIpulseaudio\fP for tones generated through system sound card using
+PulseAudio sound system,
+\fIsoundcard\fP for tones generated through the system sound card, but
+without explicit selection of sound system. These values can be
+shortened to 'n', 'c', 'a', 'o', 'p', or 's', respectively. The default
+value is 'pulseaudio' (on systems with PulseAudio installed), followed
+by 'oss'.
+.TP
+.I "\-d, \-\-device=DEVICE"
+Specifies the device file to open for generating a sound.
+\fBcw\fP will use default device if none is specified. The default
+devices are:
+\fI/dev/console\fP for sound produced through console,
+\fIdefault\fP for ALSA sound system,
+\fI/dev/audio\fP for OSS sound system,
+\fIa default device\fP for PulseAudio sound system.
+See also \fINOTES ON USING A SOUND CARD\fP below.
+.TP
+.I "\-w, \-\-wpm=WPM"
+Sets the initial sending speed in words per minute.  The value must be
+between 4 and 60.  The default value is 12 WPM.
+.TP
+.I "\-t, \-\-tone=HZ"
+Sets the initial sounder pitch in Hz.  This value must be between 0
+and 4,000.  A value of 0 selects silent operation, and can be used for
+timing checks or other testing.  The default value is 800Hz,
+.TP
+.I "\-v, \-\-volume=PERCENT"
+Sets the initial sending volume, as a percentage of full scale volume.
+The value must be between 0 and 100.  The default value is 70 %.
+Sound volumes work fully for sound card tones, but \fBcw\fP cannot
+control the volume of tones from the console speaker.  In this case,
+a volume of zero is silent, and all other volume values are simply sounded.
+.TP
+.I "\-g, \-\-gap=GAP"
+Sets the initial extra gap, in dot lengths, between characters
+(the 'Farnsworth' delay).  It must be between 0 and 60.  The default
+is 0.
+.TP
+.I "\-k, \-\-weighting=WEIGHT"
+Sets the initial weighting, as a percentage of dot lengths.  It must be
+between 20 and 80.  The default is 50.
+.TP
+.I "\-e, \-\-noecho"
+Stops \fBcw\fP echoing characters on standard output after they are
+sounded.  The default is to have echoing on.
+.TP
+.I "\-m, \-\-nomessages"
+Stops \fBcw\fP printing error messages on standard error.
+The default is to print messages.
+.TP
+.I "\-c, \-\-nocommands"
+Stops \fBcw\fP from interpreting commands embedded in the input stream.
+The default is to interpret embedded commands.
+.TP
+.I "\-o, \-\-nocombinations"
+Stops \fBcw\fP from treating character strings bracketed by [...] as
+a single combination character.  The default is to honor combinations.
+.TP
+.I "\-p, \-\-nocomments"
+Stops \fBcw\fP from treating character strings bracketed by {...}
+as 'comments'.  Characters inside these braces will be echoed to standard
+output, but not sounded.  When comments are being honored, any
+embedded commands inside the braces will be ignored.  The default is
+to honor comments.
+.TP
+.I "\-f, \-\-infile=FILE"
+Specifies a text file that \fBcw\fP can read to configure its practice
+text.
+.TP
+.I "\-h, \-\-help"
+Prints short help message.
+.TP
+.I "\-V, \-\-version"
+Prints information about program's version, authors and license.
+.PP
+.\"
+.\"
+.\"
+.SS SOUNDING CHARACTERS
+.\"
+\fBcw\fP reads characters, one at a time, from its standard input or
+from its input file.  Lowercase letters are converted internally to
+uppercase. The following list shows the valid IS0 8859-1 (Latin-1)
+characters that can be sounded by \fBcw\fP:
+.\" \[u0022] = ", otherwise emacs syntax highlighting is messed up;
+.IP
+ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\[u0022]$()+\-./:;=?_@ and space
+.PP
+In addition, the program also understands the following ISO 8859-1
+and ISO 8859-2 accented characters:
+.\"
+.\"
+.\" �������Ѫ�
+.\"
+.\"
+.\" This looks like a great place for tutorial on non-standard characters
+.\" in troff document tutorial ;)
+.\"
+.\" Q: how to produce '�' ('S' with Cedilla)?
+.\" A: use composite glyph; 'man 7 groff_char' gives this syntax of
+.\"    composite glyph:
+.\"    \[base_glyph composite_1 composite_2 ...]
+.\"    For '�' base glyph is 'S', and first (and only) composite is
+.\"    'cedilla', represented by Unicode thingy 'u0327'. Thus:
+.\"    '�' = '\[S u0327]';
+.\"
+.\" Q: how to produce '�' ('Z' with caron/hacek)?
+.\" A: in two ways: either as a composite glyph as demonstrated above),
+.\"    i.e. like this: '\[Z u030C]', or in 'regular' way, using
+.\"    non-composite glyph \[vZ]'
+.\"
+.\" Q: any more tips?
+.\" A: two:
+.\"    - read 'man 7 groff_char' (or 'man 7 troff_char');
+.\"    - make sure that your terminal (terminal emulator) can display
+.\"      non-standard characters correctly (and I mean *really* correctly);
+.\"      make a little test: open 'man 7 troff_char' in your terminal,
+.\"      and open web page with html version of the man page, then search
+.\"      for non-standard characters (e.g. cedilla) in the html document
+.\"      and compare them with those displayed in the terminal;
+.\"
+.\"
+.\"
+.\"
+.IP
+\[:U]\[:A]\[,C]\[:O]\['E]\[`E]\[`A]\[~N]\[S u0327] (S with cedilla), \[vZ] (Z with caron/hacek),
+.PP
+and accepts the following as single character forms of common procedural
+signals:
+.IP
+<>!&^~
+.PP
+See \fBcw\fP(7,LOCAL) for more information on the above characters
+and Morse code.
+.PP
+If \fBcw\fP receives a character not in this set, it prints an error
+message '?\fIc\fP', where \fIc\fP is the error character.  The only
+exceptions to this may be the \fBcw\fP command escape character '%',
+the combination start and stop characters '[' and ']', and the
+comment start and stop characters '{' and '}'.
+See \fIEMBEDDED COMMANDS\fP and \fIMORSE CODE COMBINATIONS\fP below.
+.PP
+.\"
+.\"
+.\"
+.SS EMBEDDED COMMANDS
+.\"
+\fBcw\fP recognizes special sequences in the input stream as embedded
+commands.  These commands alter the parameters of the \fBcw\fP while it is
+running, or query current values.  All commands are prefixed by the
+command escape character '%', and those which set a value end with a
+semicolon.
+.PP
+The format of an embedded command to change a parameter value is
+.IP
+%\fICvalue\fP;
+.PP
+where \fIC\fP is a command letter indicating what action \fBcw\fP
+is to take, and \fIvalue\fP is the argument or value for the command.
+.PP
+Valid command letters are
+.TP
+.I "T"
+Sets the tone pitch used to sound a character.
+.TP
+.I "W"
+Sets the sending speed.
+.TP
+.I "G"
+Sets the 'Farnsworth' gap between characters.
+.TP
+.I "K"
+Sets the weighting.
+.TP
+.I "E"
+Disables or re-enables echoing of sent characters on standard output.
+.TP
+.I "M"
+Disables or re-enables error messages on standard error.
+.TP
+.I "S"
+Disables or re-enables speaker tone generation.
+.TP
+.I "C"
+Disables processing of embedded commands.  Note that once disabled,
+this command cannot re-enable them.
+.TP
+.I "O"
+Disables or re-enables recognition of [...] character combinations.
+.TP
+.I "P"
+Disables or re-enables recognition of {...} comments.  When comments
+are being recognized, any character after an opening '{' and before
+any closing '}' will be echoed to standard output, but will not be
+sounded, or have any other effect.
+.PP
+For example, the embedded command sequence
+.IP
+%W25;%T1200;
+.PP
+will set \fBcw\fP to a speed of 25 WPM, and a tone pitch of 1200Hz.
+.PP
+The 'T', 'W', 'G', and 'A' commands take values along with the command.
+The limits on values given for embedded commands are the same as the
+limits available for command line options, detailed above.
+.PP
+The 'E', 'M', 'S', 'C' and 'O' commands are flags, and treat a value of
+zero as clear, and any other value as set.  So, for example, the sequence
+.IP
+%M0;%C0;
+.PP
+will turn off error messages, and then turn off the processing of
+embedded commands.
+.PP
+If a parameter is set successfully, \fBcw\fP reports the new setting on
+standard error (except if no error messages is set).  If an error is
+detected in an embedded command, \fBcw\fP reports an error.  For the
+formats of error messages see the \fIMESSAGE FORMATS\fP section below.
+.PP
+The current values of parameters within \fBcw\fP may be queried,
+as well as set.  The command format
+.IP
+%?\fIC\fP
+.PP
+queries the value of the parameter normally set with command \fIC\fP.
+.B cw
+reports the current value on standard error, using the same format
+as when new values are set.
+.PP
+The current values of parameters within \fBcw\fP may also be requested
+as output in Morse code.  The command format
+.IP
+%>\fIC\fP
+.PP
+will generate Morse output reporting the value of the parameter
+normally set with command \fIC\fP.
+.PP
+If embedded commands are disabled, '%' characters are treated as any
+other (in this case, invalid) input character.
+.PP
+Once processing of embedded commands has been switched off, any
+command to switch this feature back on will not be recognized.  That
+is, after '%C0;', an '%C1;' will not be recognized.
+.PP
+There is one additional command, and that is '%Q'.  This command
+closes all open files and terminates \fBcw\fP.  Any characters after
+this command in the input stream will be lost.
+.PP
+The file \fIcw.h\fP provides a full set of definitions for the
+commands, special characters, and status codes of \fBcw\fP.
+.PP
+.\"
+.\"
+.\"
+.SS MESSAGE FORMATS
+.\"
+Where a parameter value is set correctly with an embedded command, the
+message format
+.IP
+\=\fICvalue\fP
+.PP
+is returned.  \fIC\fP is the command used, and \fIvalue\fP is the
+new value.
+.PP
+If an invalid value is supplied for a parameter in an embedded
+command, a message
+.IP
+?\fICvalue\fP
+.PP
+is returned.
+.PP
+Where an invalid command is encountered, the message format
+.IP
+?%\fIC\fP
+.PP
+is used.  For an invalid query, the message is
+.IP
+??\fIC\fP
+.PP
+and for an invalid request for a parameter in Morse code the message
+is
+.IP
+?>\fIC\fP
+.PP
+A character in the input stream that cannot be sounded produces a
+message
+.IP
+?\fIC\fP
+.PP
+These messages are not intended to be user-friendly, but are designed
+to be easily and quickly interpreted by another program.  Similarly,
+the format of embedded commands is more computer-friendly than
+user-friendly.
+.PP
+If error messages are disabled, no messages of any type are printed on
+standard error.
+.PP
+.\"
+.\"
+.\"
+.SS MORSE CODE COMBINATIONS
+.\"
+The standard set of characters offered by \fBcw\fP may not be sufficient
+for some purposes.  For example, some international characters do not have
+equivalent ISO 8859-1 and ISO 8859-2 that \fBcw\fP can sound directly.
+.PP
+To help in sounding such characters, \fBcw\fP offers the ability to form
+combination characters by placing individual character components
+between [...] brackets.  \fBCw\fP sounds characters inside a combination
+without the usual gap between them.  In this way, any missing character
+in the set can be built.
+.PP
+For example
+.IP
+[VA]
+.PP
+is one way to form the VA procedural signal, though
+.IP
+[SK]
+.PP
+works just as well.  The eight-dot error signal can be sounded with
+.IP
+[HSE]
+.PP
+or the C-cedilla in international Morse code with
+.IP
+[CE]
+.PP
+There can be as many valid letters, numbers, or figures inside the [...]
+brackets as required.  For example, an alternative way of sending the
+error signal could be
+.IP
+[EEEEEEEE]
+.PP
+Finally, three alternative ways of sending 73 might be
+.IP
+[TTEEE][EEETT]
+.br
+[TDE][EUT]
+.br
+[GEE][VT]
+.PP
+Embedded commands may be placed inside [...] combinations if required.
+Combinations do not nest.
+.PP
+This feature can be disabled by using the \fI\-O\fP
+or \fI\-\-nocombinations\fP command line flags, or with the 'O' embedded
+command.  If combinations are disabled, '[' and ']' characters are treated
+as any other (invalid) input character.
+.PP
+.\"
+.\"
+.\"
+.SS NOTES ON USING A SOUND CARD
+.\"
+By default, \fBcw\fP tries to open default PulseAudio. If PulseAudio
+server is not accessible, cw tries to open OSS device "/dev/audio" to access
+the system sound card.  This is generally the correct device to use,
+but for systems with special requirements, or those with multiple sound
+cards, the option \fI-d\fP or \fI\-\-device\fP, combined with
+\fI-s\fP or \fI\-\-system\fP can be used to specify the device
+and audio system for sound card access.  If the sound card device
+cannot be set up, \fBcw\fP prints the error message
+.IP
+cannot set up soundcard sound
+.PP
+and exits.
+.PP
+Sound card devices, when opened through OSS sound system, are usually
+single-access devices, so that when one process has opened the device,
+other processes are prevented from using it. In such cases \fBcw\fP
+will of course conflict with any other programs that expect exclusive
+use of the system sound card (for example, MP3 players).
+If \fBcw\fP finds that the sound card is already busy, it prints the
+error message
+.IP
+open /dev/audio: Device or resource busy
+.PP
+and exits.
+.PP
+.\" The main sound card device will often allow \fBcw\fP to control tone
+.\" volumes directly, but where this is not possible, \fBcw\fP uses the
+.\" mixer device instead.  By default, this is "/dev/mixer", but the device
+.\" can be specified with the \fI-y\fP or \fI\-\-mdevice\fP options.  In
+.\" general, as with the main sound card device, the default mixer device
+.\" is usually the correct one to use.
+.\" .PP
+.\" The mixer device is only used if the sound card does not allow volume
+.\" control through the main sound card device.
+.PP
+The sound card device is not used if \fBcw\fP is only sending tones on
+the console speaker.
+.PP
+.\"
+.\"
+.\"
+.SS AUDIO OUTPUT \- DEFAULTS AND SELECTION
+.\"
+\fBcw\fP first tries to access sound card using PulseAudio sound system,
+using default device name, unless user specifies other audio device with
+option \fI-d\fP or \fI\-\-device\fP.
+.PP
+\fBcw\fP then tries to access sound card using OSS audio system
+and default OSS audio device name ('/dev/audio'), unless user
+specifies other audio device with option \fI-d\fP or \fI\-\-device\fP.
+.PP
+If opening soundcard through OSS fails, \fBcw\fP tries to access
+the sound card using ALSA audio system, and default ALSA audio device
+name ('default'), unless user specifies other audio device with option
+\fI-d\fP or \fI\-\-device\fP.
+.PP
+If opening soundcard through ALSA also fails, \fBcw\fP tries to access
+system console buzzer using default buzzer device '/dev/console',
+unless user specifies other audio device with option \fI-d\fP or
+\fI\-\-device\fP.
+.PP
+It is very common that in order to access the console buzzer device
+user has to have root privileges.  For that reason trying to open
+console buzzer almost always fails.  This is not a program's bug,
+this is a result of operating system's restrictions.
+Making \fBcw\fP an suid binary bypasses this restriction.  The program
+does not fork() or exec(), so making it suid should be relatively safe.
+Note however that this practice is discouraged for security reasons.
+.PP
+As stated, user can tell \fBcw\fP which device to use, using
+\fI-d\fP or \fI\-\-device\fP option.  Which device files are suitable
+will depend on which operating system is running, which system
+user ID runs \fBcw\fP, and which user groups user belongs to.
+.PP
+.\"
+.\"
+.\"
+.SH NOTES
+.\"
+Despite the fact that this manual page constantly and consistently
+refers to Morse code elements as dots and dashes, DO NOT think in these
+terms when trying to learn Morse code.  Always think of them as 'dit's
+and 'dah's.
+.PP
+The Morse code table in the \fBcw\fP(7,LOCAL) man page is provided for
+reference only.  If learning for the first time, you will be much better
+off learning by hearing the characters sent, rather than by looking at
+the table.
+.PP
+Other programs running in the system may interfere with the timing of
+the Morse code that \fBcw\fP is sending.  If this is a problem,
+either try to run on a quiescent system, or try running \fBcw\fP
+with nice(1L,C,1).  UNIX is not really designed for user-level programs
+to do the sort of fine timing required to send Morse code.  \fBcw\fP
+is therefore more sensitive than most programs to other system activity.
+.PP
+.B cw
+uses system itimers for its internal timing.  On most UNIX flavors,
+itimers are not guaranteed to signal a program exactly at the specified
+time, and they generally offer a resolution only as good as the normal
+system 'clock tick' resolution.  An itimer SIGALRM usually falls on a
+system clock tick, making it accurate to no better than 10mS on a typical
+100Hz kernel.
+.PP
+The effect of this is that an itimer period is generally either
+exactly as specified, or, more likely, slightly longer.  At higher
+WPM settings, the cumulative effect of this affects timing accuracy,
+because at higher speeds, there are fewer 10mS clock ticks in a dot
+period.  For example, at 12 WPM, the dot length is 100mS, enough to
+contain five kernel clock ticks.  But at 60 WPM, the dot length is 20mS,
+or just two kernel clock ticks.  So at higher speeds, the effect of itimer
+resolutions becomes more pronounced.
+.PP
+To test itimer timing, first try
+.IP
+X="PARIS PARIS PARIS PARIS "
+.IP
+echo "$X" | time cw \-w 4
+.PP
+and note the elapsed time, which should be very close to one minute.
+Next, try
+.IP
+echo "$X$X$X$X$X$X$X$X$X$X$X$X" | time cw \-w 48
+.PP
+The elapsed time should be the same.  If it has increased, this is the
+effect of system itimers delaying for slightly longer than the specified
+period (higher WPM rates make more itimer calls).  That's itimers for you,
+not perfect for this job, but the best there is without writing some,
+and perhaps a lot of, kernel code.
+.PP
+Except for zero, which is silent, tone values lower than 10Hz may not
+sound at the expected pitch.
+.PP
+.\"
+.\"
+.\"
+.SH EXAMPLES
+.\"
+Send a string of characters at 25 WPM, 700Hz, with no extra gaps:
+.IP
+echo "UNIX CW SOUNDER" | cw \-w 25 \-t 700
+.PP
+Send a string at varying speeds and tones on the console speaker,
+specifying a system console device:
+.IP
+echo "%W12;%T400;400HZ 12WPM %W25;%T1500;1500HZ 25WPM" |
+cw \-m \-sc \-d /dev/tty2
+.PP
+Send C-cedilla, VA, and a report of the WPM setting, with extra spacing
+at half volume:
+.IP
+echo "[CE] [VA] %>W" | cw \-g 10 \-v 50
+.PP
+.\"
+.\"
+.\"
+.SH ERRORS AND OMISSIONS
+.\"
+Cut numbers are not provided, though they can be emulated, up to a
+point, by pre-filtering.
+.PP
+An output to an optional external device, for example, keying a line
+on the parallel port, or a serial line, might also be useful.
+.PP
+.\"
+.\"
+.\"
+.SH SEE ALSO
+.\"
+Man pages for \fBcw\fP(7,LOCAL), \fBlibcw\fP(3,LOCAL), \fBcwgen\fP(1,LOCAL),
+\fBcwcp\fP(1,LOCAL), and \fBxcwcp\fP(1,LOCAL).
+.\"

@@ -1,0 +1,39 @@
+This package was debianized by Joop Stakenborg pa3aba@debian.org on
+Wed, 20 Jun 2001 09:44:23 +0200.
+
+
+
+Some files that are a standard part of build system, and that
+are located in root directory of source package, may have
+different copyright holders and different licenses than listed
+below. Copyright/license of rest of the files in unixcw source
+package follows:
+
+
+
+Upstream-Name: unixcw
+Upstream-Contact: Kamil Ignacak <acerion@wp.pl>
+Source: http://unixcw.sourceforge.net
+
+Files: *
+Copyright: Copyright (C) 2001-2006  Simon Baldwin (simon_baldwin@yahoo.com)
+           Copyright (C) 2011-2015  Kamil Ignacak (acerion@wp.pl)
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+

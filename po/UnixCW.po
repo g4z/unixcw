@@ -1,0 +1,1263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2006-07-12 23:43-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/cw/cw.c:234
+#, c-format
+msgid "%d HZ "
+msgstr ""
+
+#: src/cw/cw.c:238 src/cw/cw.c:250
+#, c-format
+msgid "%d PERCENT "
+msgstr ""
+
+#: src/cw/cw.c:242
+#, c-format
+msgid "%d WPM "
+msgstr ""
+
+#: src/cw/cw.c:246
+#, c-format
+msgid "%d DOTS "
+msgstr ""
+
+#: src/cw/cw.c:254
+#, c-format
+msgid "ECHO %s "
+msgstr ""
+
+#: src/cw/cw.c:258
+#, c-format
+msgid "ERRORS %s "
+msgstr ""
+
+#: src/cw/cw.c:262
+#, c-format
+msgid "COMMANDS %s "
+msgstr ""
+
+#: src/cw/cw.c:266
+#, c-format
+msgid "COMBINATIONS %s "
+msgstr ""
+
+#: src/cw/cw.c:270
+#, c-format
+msgid "COMMENTS %s "
+msgstr ""
+
+#: src/cw/cw.c:288
+msgid "ON"
+msgstr ""
+
+#: src/cw/cw.c:288
+msgid "OFF"
+msgstr ""
+
+#: src/cw/cw.c:572 src/cwcp/cwcp.c:1261 src/cwgen/cwgen.c:159
+#, c-format
+msgid "Try '%s --help' for more information.\n"
+msgstr ""
+
+#: src/cw/cw.c:573 src/cwcp/cwcp.c:1262 src/cwgen/cwgen.c:160
+#, c-format
+msgid "Try '%s -h' for more information.\n"
+msgstr ""
+
+#: src/cw/cw.c:599
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -s, --sound=SOURCE     generate sound on SOURCE [default 'soundcard']\n"
+"                         one of 's[oundcard]', 'c[onsole]', or 'b[oth]'\n"
+"  -x, --sdevice=SDEVICE  use SDEVICE for soundcard [default %s]\n"
+"  -y, --mdevice=MDEVICE  use MDEVICE for sound mixer [default %s]\n"
+"  -d, --cdevice=CDEVICE  use CDEVICE for sound ioctl [default %s]\n"
+"  -f, --file=FILE        read from FILE [default stdin]\n"
+msgstr ""
+
+#: src/cw/cw.c:608
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -s SOURCE   generate sound on SOURCE [default 'console']\n"
+"              one of 'c[onsole]', 's[oundcard]', or 'b[oth]'\n"
+"  -x SDEVICE  use SDEVICE for soundcard [default %s]\n"
+"  -y MDEVICE  use MDEVICE for sound mixer [default %s]\n"
+"  -d CDEVICE  use CDEVICE for sound ioctl [default %s]\n"
+"  -f FILE     read from FILE [default stdin]\n"
+msgstr ""
+
+#: src/cw/cw.c:622
+#, c-format
+msgid ""
+"  -w, --wpm=WPM          set initial words per minute [default %d]\n"
+"                         valid WPM values are between %d and %d\n"
+"  -t, --hz,--tone=HZ     set initial tone to HZ [default %d]\n"
+"                         valid HZ values are between %d and %d\n"
+"  -v, --volume=PERCENT   set initial volume to PERCENT [default %d]\n"
+"                         valid PERCENT values are between %d and %d\n"
+msgstr ""
+
+#: src/cw/cw.c:628
+#, c-format
+msgid ""
+"  -w WPM      set initial words per minute [default %d]\n"
+"              valid WPM values are between %d and %d\n"
+"  -t HZ       set initial tone to HZ [default %d]\n"
+"              valid HZ values are between %d and %d\n"
+"  -v PERCENT  set initial volume to PERCENT [default %d]\n"
+"              valid PERCENT values are between %d and %d\n"
+msgstr ""
+
+#: src/cw/cw.c:641
+#, c-format
+msgid ""
+"  -g, --gap=GAP          set extra gap between letters [default %d]\n"
+"                         valid GAP values are between %d and %d\n"
+"  -k, --weighting=WEIGHT set weighting to WEIGHT [default %d]\n"
+"                         valid WEIGHT values are between %d and %d\n"
+"  -e, --noecho           don't echo sending to stdout [default echo]\n"
+"  -m, --nomessages       don't write messages to stderr [default messages]\n"
+msgstr ""
+
+#: src/cw/cw.c:648
+#, c-format
+msgid ""
+"  -g GAP      set extra gap between letters [default %d]\n"
+"              valid GAP values are between %d and %d\n"
+"  -k WEIGHT   set weighting to WEIGHT [default %d]\n"
+"              valid WEIGHT values are between %d and %d\n"
+"  -e          don't echo sending to stdout [default echo]\n"
+"  -m          don't write messages to stderr [default messages]\n"
+msgstr ""
+
+#: src/cw/cw.c:660
+msgid ""
+"  -c, --nocommands       don't execute embedded commands [default commands]\n"
+"  -o, --nocombinations   don't allow [...] combinations [default combos]\n"
+"  -p, --nocomments       don't allow {...} comments [default comments]\n"
+"  -h, --help             print this message\n"
+"  -V, --version          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cw/cw.c:667
+msgid ""
+"  -c          don't execute embedded commands [default commands]\n"
+"  -o          don't allow [...] combinations [default combinations]\n"
+"  -p          don't allow {...} comments [default comments]\n"
+"  -h          print this message\n"
+"  -V          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cw/cw.c:696
+msgid ""
+"s:|sound,d:|cdevice,x:|sdevice,y:|mdevice,f:|file,t:|tone,t:|hz,v:|volume,w:|"
+"wpm,g:|gap,k:|weighting,e|noecho,m|nomessages,c|nocommands,o|nocombinations,"
+"p|nocomments,h|help,V|version"
+msgstr ""
+
+#: src/cw/cw.c:707 src/cwcp/cwcp.c:1391 src/xcwcp/main.cc:208
+msgid "console"
+msgstr ""
+
+#: src/cw/cw.c:708 src/cwcp/cwcp.c:1392 src/xcwcp/main.cc:208
+msgid "c"
+msgstr ""
+
+#: src/cw/cw.c:713 src/cwcp/cwcp.c:1397 src/xcwcp/main.cc:213
+msgid "soundcard"
+msgstr ""
+
+#: src/cw/cw.c:714 src/cwcp/cwcp.c:1398 src/xcwcp/main.cc:132
+#: src/xcwcp/main.cc:213
+msgid "s"
+msgstr ""
+
+#: src/cw/cw.c:719 src/cwcp/cwcp.c:1403 src/xcwcp/main.cc:218
+msgid "both"
+msgstr ""
+
+#: src/cw/cw.c:720 src/cwcp/cwcp.c:1404 src/xcwcp/main.cc:218
+msgid "b"
+msgstr ""
+
+#: src/cw/cw.c:727 src/cwcp/cwcp.c:1411
+#, c-format
+msgid "%s: invalid sound source\n"
+msgstr ""
+
+#: src/cw/cw.c:747
+#, c-format
+msgid "%s: error opening input file\n"
+msgstr ""
+
+#: src/cw/cw.c:757 src/cwcp/cwcp.c:1448
+#, c-format
+msgid "%s: invalid tone value\n"
+msgstr ""
+
+#: src/cw/cw.c:766 src/cwcp/cwcp.c:1457
+#, c-format
+msgid "%s: invalid volume value\n"
+msgstr ""
+
+#: src/cw/cw.c:775 src/cwcp/cwcp.c:1466
+#, c-format
+msgid "%s: invalid wpm value\n"
+msgstr ""
+
+#: src/cw/cw.c:784 src/cwcp/cwcp.c:1475
+#, c-format
+msgid "%s: invalid gap value\n"
+msgstr ""
+
+#: src/cw/cw.c:793
+#, c-format
+msgid "%s: invalid weighting value\n"
+msgstr ""
+
+#: src/cw/cw.c:822 src/cwcp/cwcp.c:1511 src/cwgen/cwgen.c:304
+#, c-format
+msgid "%s version %s, %s\n"
+msgstr ""
+
+#: src/cw/cw.c:830
+#, c-format
+msgid "%s: getopts returned '%c'\n"
+msgstr ""
+
+#: src/cw/cw.c:840 src/cwcp/cwcp.c:1530
+#, c-format
+msgid "%s: no console sound: -d invalid\n"
+msgstr ""
+
+#: src/cw/cw.c:847 src/cwcp/cwcp.c:1535
+#, c-format
+msgid "%s: no soundcard sound: -x invalid\n"
+msgstr ""
+
+#: src/cw/cw.c:852 src/cwcp/cwcp.c:1540
+#, c-format
+msgid "%s: no soundcard sound: -y invalid\n"
+msgstr ""
+
+#: src/cw/cw.c:864 src/cwcp/cwcp.c:1551
+#, c-format
+msgid "%s: cannot set up soundcard sound\n"
+msgstr ""
+
+#: src/cw/cw.c:880 src/cwcp/cwcp.c:1567
+#, c-format
+msgid "%s: cannot set up console sound\n"
+msgstr ""
+
+#: src/cw/cw.c:906
+msgid "CW_OPTIONS"
+msgstr ""
+
+#: src/cwcp/cwcp.c:454
+msgid "Keyboard"
+msgstr ""
+
+#: src/cwcp/cwcp.c:458
+msgid "Exit (F12)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:556
+msgid "Sending(F9 or Esc to exit)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:589 src/cwcp/cwcp.c:902
+msgid "Start(F9)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:691
+msgid ""
+"\n"
+"UNIX/Linux Morse Tutor v2.3, (C) 1997-2006 Simon Baldwin\n"
+"--------------------------------------------------------\n"
+"\n"
+"Cwcp is an interactive Morse code tutor program, designed\n"
+"both for learning Morse code for the first time, and for\n"
+"experienced Morse users who want, or need, to improve\n"
+"their receiving speed.\n"
+"\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:698
+msgid ""
+"\n"
+"To use the program, select a mode from those listed on\n"
+"the left, and begin sending by pressing Return or F9.\n"
+"\n"
+"You can vary the speed, tone, volume, and spacing of the\n"
+"Morse code at any time using the appropriate keys.\n"
+"\n"
+"To stop sending, press F9.  To stop the program, select\n"
+"Exit from the Mode menu, or use F12 or ^C.\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:889
+msgid "Mode(F10v,F11^)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:917 src/cwcp/cwcp.c:1044
+#, c-format
+msgid "%2d WPM"
+msgstr ""
+
+#: src/cwcp/cwcp.c:918
+msgid "Speed(F1-,F2+)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:921 src/cwcp/cwcp.c:1065
+#, c-format
+msgid "%4d Hz"
+msgstr ""
+
+#: src/cwcp/cwcp.c:922
+msgid "Tone(F3-,F4+)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:925 src/cwcp/cwcp.c:1084
+#, c-format
+msgid "%3d %%"
+msgstr ""
+
+#: src/cwcp/cwcp.c:926
+msgid "Vol(F5-,F6+)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:930 src/cwcp/cwcp.c:1104
+#, c-format
+msgid "%2d dot "
+msgstr ""
+
+#: src/cwcp/cwcp.c:930 src/cwcp/cwcp.c:1104
+#, c-format
+msgid "%2d dots"
+msgstr ""
+
+#: src/cwcp/cwcp.c:931
+msgid "Gap(F7-,F8+)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:935
+#, c-format
+msgid " 0/%2d min "
+msgstr ""
+
+#: src/cwcp/cwcp.c:935
+#, c-format
+msgid " 0/%2d mins"
+msgstr ""
+
+#: src/cwcp/cwcp.c:936
+msgid "Time(Dn-,Up+)"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1124
+#, c-format
+msgid "%2d min "
+msgstr ""
+
+#: src/cwcp/cwcp.c:1124
+#, c-format
+msgid "%2d mins"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1288
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -s, --sound=SOURCE     generate sound on SOURCE [default 'soundcard']\n"
+"                         one of 's[oundcard]', 'c[onsole]', or 'b[oth]'\n"
+"  -x, --sdevice=SDEVICE  use SDEVICE for soundcard [default %s]\n"
+"  -y, --mdevice=MDEVICE  use MDEVICE for sound mixer [default %s]\n"
+"  -d, --cdevice=CDEVICE  use CDEVICE for sound ioctl [default %s]\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1296
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -s SOURCE   generate sound on SOURCE [default 'soundcard']\n"
+"              one of 's[oundcard]', 'c[onsole]', or 'b[oth]'\n"
+"  -x SDEVICE  use SDEVICE for soundcard [default %s]\n"
+"  -y MDEVICE  use MDEVICE for sound mixer [default %s]\n"
+"  -d CDEVICE  use CDEVICE for sound ioctl [default %s]\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1309
+#, c-format
+msgid ""
+"  -i, --inifile=INIFILE  load practice words from INIFILE\n"
+"  -w, --wpm=WPM          set initial words per minute [default %d]\n"
+"                         valid WPM values are between %d and %d\n"
+"  -t, --hz,--tone=HZ     set initial tone to HZ [default %d]\n"
+"                         valid HZ values are between %d and %d\n"
+"  -v, --volume=PERCENT   set initial volume to PERCENT [default %d]\n"
+"                         valid PERCENT values are between %d and %d\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1317
+#, c-format
+msgid ""
+"  -i INIFILE  load practice words from INIFILE\n"
+"  -w WPM      set initial words per minute [default %d]\n"
+"              valid WPM values are between %d and %d\n"
+"  -t HZ       set initial tone to HZ [default %d]\n"
+"              valid HZ values are between %d and %d\n"
+"  -v PERCENT  set initial volume to PERCENT [default %d]\n"
+"              valid PERCENT values are between %d and %d\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1331
+#, c-format
+msgid ""
+"  -g, --gap=GAP          set extra gap between letters [default %d]\n"
+"                         valid GAP values are between %d and %d\n"
+"  -p, --time=TIME        set initial practice time [default %d mins]\n"
+"                         valid TIME values are between %d and %d\n"
+"  -c, --colo[u]rs=CSET   set initial display colors where available\n"
+"                         [default %d,%d,%d,%d]\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1337
+#, c-format
+msgid ""
+"  -g GAP      set extra gap between letters [default %d]\n"
+"              valid GAP values are between %d and %d\n"
+"  -p TIME     set initial practice time [default %d mins]\n"
+"              valid TIME values are between %d and %d\n"
+"  -c CSET     set initial display colors where available\n"
+"              [default %d,%d,%d,%d]\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1351
+msgid ""
+"  -m, --mono             specify no colors [default colors]\n"
+"  -h, --help             print this message\n"
+"  -V, --version          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1354
+msgid ""
+"  -m          specify no colors [default colors]\n"
+"  -h          print this message\n"
+"  -V          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1381
+msgid ""
+"s:|sound,d:|cdevice,x:|sdevice,y:|mdevice,i:|inifile,t:|tone,t:|hz,v:|volume,"
+"w:|wpm,g:|gap,p:|time,c:|colours,c:|colors,m|mono,h|help,V|version,#:|#"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1431
+#, c-format
+msgid "%s: error loading practice words\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1439
+#, c-format
+msgid "%s: error writing practice words\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1484
+#, c-format
+msgid "%s: invalid time value\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1498
+#, c-format
+msgid "%s: invalid colors value\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1519 src/cwgen/cwgen.c:312
+#, c-format
+msgid "%s: getopts returned %c\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1629
+#, c-format
+msgid ""
+"\n"
+"Caught signal %d, exiting...\n"
+msgstr ""
+
+#: src/cwcp/cwcp.c:1652
+msgid "CWCP_OPTIONS"
+msgstr ""
+
+#: src/cwgen/cwgen.c:178
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -g, --groups=GROUPS    send GROUPS groups of chars [default %d]\n"
+"                         GROUPS values may not be lower than %d\n"
+"  -n, --groupsize=GS     make groups GS chars [default %d]\n"
+"                         GS values may not be lower than %d, or\n"
+"  -n, --groupsize=GL-GH  make groups between GL and GH chars\n"
+"                         valid GL, GH values are as for GS above\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:185
+#, c-format
+msgid ""
+"Usage: %s [options...]\n"
+"\n"
+"  -g GROUPS   send GROUPS groups of chars [default %d]\n"
+"              GROUPS values may not be lower than %d\n"
+"  -n GS       make groups GS chars [default %d]\n"
+"              GS values may not be lower than %d, or\n"
+"  -n GL-GH    make groups between GL and GH chars\n"
+"              valid GL, GH values are as for GS above\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:198
+#, c-format
+msgid ""
+"  -r, --repeat=COUNT     repeat each group COUNT times [default %d]\n"
+"                         COUNT values may not be lower than %d\n"
+"  -c, --charset=CHARSET  select chars to send from this set\n"
+"                         [default %s]\n"
+"  -x, --limit=LIMIT      stop after LIMIT characters [default %d]\n"
+"                         a LIMIT of zero indicates no set limit\n"
+"  -h, --help             print this message\n"
+"  -v, --version          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:206
+#, c-format
+msgid ""
+"  -r COUNT    repeat each group COUNT times [default %d]\n"
+"              COUNT values may not be lower than %d\n"
+"  -c CHARSET  select chars to send from this set\n"
+"              [default %s]\n"
+"  -x LIMIT    stop after LIMIT characters [default %d]\n"
+"              a LIMIT of zero indicates no set limit\n"
+"  -h          print this message\n"
+"  -v          output version information and exit\n"
+"\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:237
+msgid "g:|groups,n:|groupsize,r:|repeat,x:|limit,c:|charset,h|help,v|version"
+msgstr ""
+
+#: src/cwgen/cwgen.c:247
+#, c-format
+msgid "%s: invalid groups value\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:258
+#, c-format
+msgid "%s: invalid groupsize range\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:266
+#, c-format
+msgid "%s: invalid groupsize value\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:277
+#, c-format
+msgid "%s: invalid repeat value\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:286
+#, c-format
+msgid "%s: invalid limit value\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:294
+#, c-format
+msgid "%s: charset cannot be empty\n"
+msgstr ""
+
+#: src/cwgen/cwgen.c:336
+msgid "CWGEN_OPTIONS"
+msgstr ""
+
+#: src/cwutils/dictionary.c:435
+msgid "Letter Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:436
+msgid "Number Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:437
+msgid "Alphanum Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:438
+msgid "All Char Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:439
+msgid "English Words"
+msgstr ""
+
+#: src/cwutils/dictionary.c:440
+msgid "CW Words"
+msgstr ""
+
+#: src/cwutils/dictionary.c:441
+msgid "PARIS Calibrate"
+msgstr ""
+
+#: src/cwutils/dictionary.c:442
+msgid "EISH5 Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:443
+msgid "TMO0 Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:444
+msgid "AUV4 Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:445
+msgid "NDB6 Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:446
+msgid "KX=-RP Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:447
+msgid "FLYQC Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:448
+msgid "WJ1GZ Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:449
+msgid "23789 Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:450
+msgid ",?.;)/ Groups"
+msgstr ""
+
+#: src/cwutils/dictionary.c:451
+msgid "\"'$(+:_ Groups"
+msgstr ""
+
+#: src/cwutils/copyright.h:28
+msgid ""
+"Copyright (C) 2001-2006  Simon Baldwin\n"
+"\n"
+"This program comes with ABSOLUTELY NO WARRANTY; for details please see\n"
+"the file 'COPYING' supplied with the source code.  This is free software,\n"
+"and you are welcome to redistribute it under certain conditions; again,\n"
+"see 'COPYING' for details. This program is released under the GNU General\n"
+"Public License.\n"
+msgstr ""
+
+#: src/xcwcp/main.cc:60
+msgid "Try '"
+msgstr ""
+
+#: src/xcwcp/main.cc:61
+msgid "--help"
+msgstr ""
+
+#: src/xcwcp/main.cc:61
+msgid "-h"
+msgstr ""
+
+#: src/xcwcp/main.cc:62
+msgid "' for more information."
+msgstr ""
+
+#: src/xcwcp/main.cc:100 src/xcwcp/main.cc:107
+msgid " [default "
+msgstr ""
+
+#: src/xcwcp/main.cc:117
+msgid "valid "
+msgstr ""
+
+#: src/xcwcp/main.cc:117
+msgid " values are between "
+msgstr ""
+
+#: src/xcwcp/main.cc:118
+msgid " and "
+msgstr ""
+
+#: src/xcwcp/main.cc:131
+msgid "Usage: "
+msgstr ""
+
+#: src/xcwcp/main.cc:131
+msgid " [options...]"
+msgstr ""
+
+#: src/xcwcp/main.cc:132
+msgid "sound"
+msgstr ""
+
+#: src/xcwcp/main.cc:132
+msgid "SOURCE"
+msgstr ""
+
+#: src/xcwcp/main.cc:133
+msgid "generate sound on SOURCE"
+msgstr ""
+
+#: src/xcwcp/main.cc:133
+msgid "'soundcard'"
+msgstr ""
+
+#: src/xcwcp/main.cc:135
+msgid "one of 's[oundcard]', 'c[onsole]', or 'b[oth]'"
+msgstr ""
+
+#: src/xcwcp/main.cc:136
+msgid "x"
+msgstr ""
+
+#: src/xcwcp/main.cc:136
+msgid "sdevice"
+msgstr ""
+
+#: src/xcwcp/main.cc:136
+msgid "SDEVICE"
+msgstr ""
+
+#: src/xcwcp/main.cc:138
+msgid "use SDEVICE for soundcard"
+msgstr ""
+
+#: src/xcwcp/main.cc:139
+msgid "y"
+msgstr ""
+
+#: src/xcwcp/main.cc:139
+msgid "mdevice"
+msgstr ""
+
+#: src/xcwcp/main.cc:139
+msgid "MDEVICE"
+msgstr ""
+
+#: src/xcwcp/main.cc:141
+msgid "use MDEVICE for sound mixer"
+msgstr ""
+
+#: src/xcwcp/main.cc:143
+msgid "d"
+msgstr ""
+
+#: src/xcwcp/main.cc:143
+msgid "cdevice"
+msgstr ""
+
+#: src/xcwcp/main.cc:143
+msgid "CDEVICE"
+msgstr ""
+
+#: src/xcwcp/main.cc:145
+msgid "use CDEVICE for sound ioctl"
+msgstr ""
+
+#: src/xcwcp/main.cc:146
+msgid "i"
+msgstr ""
+
+#: src/xcwcp/main.cc:146
+msgid "inifile"
+msgstr ""
+
+#: src/xcwcp/main.cc:146
+msgid "INIFILE"
+msgstr ""
+
+#: src/xcwcp/main.cc:147
+msgid "load practice words from INIFILE"
+msgstr ""
+
+#: src/xcwcp/main.cc:151
+msgid "w"
+msgstr ""
+
+#: src/xcwcp/main.cc:151
+msgid "wpm"
+msgstr ""
+
+#: src/xcwcp/main.cc:151 src/xcwcp/main.cc:155
+msgid "WPM"
+msgstr ""
+
+#: src/xcwcp/main.cc:153
+msgid "set initial words per minute"
+msgstr ""
+
+#: src/xcwcp/main.cc:157
+msgid "t"
+msgstr ""
+
+#: src/xcwcp/main.cc:157
+msgid "hz,--tone"
+msgstr ""
+
+#: src/xcwcp/main.cc:157 src/xcwcp/main.cc:160
+msgid "HZ"
+msgstr ""
+
+#: src/xcwcp/main.cc:158
+msgid "set initial tone to HZ"
+msgstr ""
+
+#: src/xcwcp/main.cc:162
+msgid "v"
+msgstr ""
+
+#: src/xcwcp/main.cc:162
+msgid "volume"
+msgstr ""
+
+#: src/xcwcp/main.cc:162 src/xcwcp/main.cc:165
+msgid "PERCENT"
+msgstr ""
+
+#: src/xcwcp/main.cc:163
+msgid "set initial volume to PERCENT"
+msgstr ""
+
+#: src/xcwcp/main.cc:167
+msgid "g"
+msgstr ""
+
+#: src/xcwcp/main.cc:167
+msgid "gap"
+msgstr ""
+
+#: src/xcwcp/main.cc:167 src/xcwcp/main.cc:170
+msgid "GAP"
+msgstr ""
+
+#: src/xcwcp/main.cc:168
+msgid "set extra gap between letters"
+msgstr ""
+
+#: src/xcwcp/main.cc:172
+msgid "h"
+msgstr ""
+
+#: src/xcwcp/main.cc:172
+msgid "help"
+msgstr ""
+
+#: src/xcwcp/main.cc:173
+msgid "print this message"
+msgstr ""
+
+#: src/xcwcp/main.cc:174
+msgid "V"
+msgstr ""
+
+#: src/xcwcp/main.cc:174
+msgid "version"
+msgstr ""
+
+#: src/xcwcp/main.cc:175
+msgid "output version information and exit"
+msgstr ""
+
+#: src/xcwcp/main.cc:196
+msgid ""
+"s:|sound,d:|cdevice,x:|sdevice,y:|mdevice,i:|inifile,t:|tone,t:|hz,v:|volume,"
+"w:|wpm,g:|gap,h|help,V|version,#:|#"
+msgstr ""
+
+#: src/xcwcp/main.cc:225
+msgid ": invalid sound source"
+msgstr ""
+
+#: src/xcwcp/main.cc:246
+msgid ": error loading words list"
+msgstr ""
+
+#: src/xcwcp/main.cc:255
+msgid ": error writing words list"
+msgstr ""
+
+#: src/xcwcp/main.cc:264
+msgid ": invalid tone value"
+msgstr ""
+
+#: src/xcwcp/main.cc:273
+msgid ": invalid volume value"
+msgstr ""
+
+#: src/xcwcp/main.cc:282
+msgid ": invalid wpm value"
+msgstr ""
+
+#: src/xcwcp/main.cc:291
+msgid ": invalid gap value"
+msgstr ""
+
+#: src/xcwcp/main.cc:300
+msgid " version "
+msgstr ""
+
+#: src/xcwcp/main.cc:308
+msgid ": getopts returned "
+msgstr ""
+
+#: src/xcwcp/main.cc:319
+msgid ": no console sound: -d invalid"
+msgstr ""
+
+#: src/xcwcp/main.cc:324
+msgid ": no soundcard sound: -x invalid"
+msgstr ""
+
+#: src/xcwcp/main.cc:329
+msgid ": no soundcard sound: -y invalid"
+msgstr ""
+
+#: src/xcwcp/main.cc:341
+msgid ": cannot set up soundcard sound"
+msgstr ""
+
+#: src/xcwcp/main.cc:358
+msgid ": cannot set up console sound"
+msgstr ""
+
+#: src/xcwcp/main.cc:373
+msgid "Caught signal "
+msgstr ""
+
+#: src/xcwcp/main.cc:374
+msgid ", exiting..."
+msgstr ""
+
+#: src/xcwcp/main.cc:403
+msgid "XCWCP_OPTIONS"
+msgstr ""
+
+#: src/xcwcp/main.cc:423 src/xcwcp/application.cc:147
+#: src/xcwcp/application.cc:384 src/xcwcp/application.cc:419
+#: src/xcwcp/application.cc:518
+msgid "Xcwcp"
+msgstr ""
+
+#: src/xcwcp/application.cc:75 src/xcwcp/application.cc:78
+msgid "Xcwcp version "
+msgstr ""
+
+#: src/xcwcp/application.cc:83
+msgid ""
+"When this button shows <img source=\"start\">, click it to begin sending or "
+"receiving.  Only one window may send at a time.<br><br>When the button shows "
+"<img source=\"stop\">, click it to finish sending or receiving.\n"
+"\n"
+msgstr ""
+
+#: src/xcwcp/application.cc:89
+msgid ""
+"This allows you to change what Xcwcp does.  Most of the available selections "
+"will probably generate random CW characters of one form or another."
+"<br><br>The exceptions are Send Keyboard CW, which sends the characters that "
+"you type at the keyboard, and Receive Keyed CW, which will decode CW that "
+"you key in using the mouse or keyboard.<br><br>To key CW into Xcwcp for "
+"receive mode, use either the mouse or the keyboard.  On the mouse, the left "
+"and right buttons form an Iambic keyer, and the middle mouse button works as "
+"a straight key.<br><br>On the keyboard, use the Left and Right cursor keys "
+"for Iambic keyer control, and the Up or Down cursor keys, or the Space, "
+"Enter, or Return keys, as a straight key."
+msgstr ""
+
+#: src/xcwcp/application.cc:103
+msgid ""
+"This controls the CW sending speed.  If you deselect adaptive receive speed, "
+"it also controls the CW receiving speed."
+msgstr ""
+
+#: src/xcwcp/application.cc:107
+msgid ""
+"This sets the frequency of the CW tone on the system sound card or console."
+"<br><br>It affects both sent CW and receive sidetone."
+msgstr ""
+
+#: src/xcwcp/application.cc:112
+msgid ""
+"This sets the volume of the CW tone on the system sound card.  It is not "
+"possible to control console sound volume, so in this case, all values other "
+"than zero produce tones.<br><br>The volume control affects both sent CW and "
+"receive sidetone."
+msgstr ""
+
+#: src/xcwcp/application.cc:118
+msgid ""
+"This sets the \"Farnsworth\" gap used in sending CW.  This gap is an extra "
+"number of dit-length silences between CW characters."
+msgstr ""
+
+#: src/xcwcp/application.cc:122
+msgid ""
+"This is the main display for Xcwcp.  The random CW characters that Xcwcp "
+"generates, any keyboard input you type, and the CW that you key into Xcwcp "
+"all appear here.<br><br>You can clear the display contents from the File "
+"menu.<br><br>The status bar shows the current character being sent, any "
+"character received, and other general error and Xcwcp status information."
+msgstr ""
+
+#: src/xcwcp/application.cc:151 src/xcwcp/application.cc:152
+msgid "Xcwcp Operations"
+msgstr ""
+
+#: src/xcwcp/application.cc:162 src/xcwcp/application.cc:164
+msgid "Start/Stop"
+msgstr ""
+
+#: src/xcwcp/application.cc:165
+msgid "Start/stop"
+msgstr ""
+
+#: src/xcwcp/application.cc:174 src/xcwcp/application.cc:175
+msgid "Mode"
+msgstr ""
+
+#: src/xcwcp/application.cc:193
+msgid "Speed:"
+msgstr ""
+
+#: src/xcwcp/application.cc:193
+msgid "Speed Label"
+msgstr ""
+
+#: src/xcwcp/application.cc:195 src/xcwcp/application.cc:196
+msgid "Speed"
+msgstr ""
+
+#: src/xcwcp/application.cc:197 src/xcwcp/receiver.cc:290
+#: src/xcwcp/receiver.cc:309 src/xcwcp/sender.cc:144
+msgid " WPM"
+msgstr ""
+
+#: src/xcwcp/application.cc:202
+msgid "Tone:"
+msgstr ""
+
+#: src/xcwcp/application.cc:202
+msgid "Frequency Label"
+msgstr ""
+
+#: src/xcwcp/application.cc:205 src/xcwcp/application.cc:206
+msgid "Frequency"
+msgstr ""
+
+#: src/xcwcp/application.cc:207
+msgid " Hz"
+msgstr ""
+
+#: src/xcwcp/application.cc:213
+msgid "Volume:"
+msgstr ""
+
+#: src/xcwcp/application.cc:213
+msgid "Volume Label"
+msgstr ""
+
+#: src/xcwcp/application.cc:215 src/xcwcp/application.cc:216
+msgid "Volume"
+msgstr ""
+
+#: src/xcwcp/application.cc:217
+msgid " %"
+msgstr ""
+
+#: src/xcwcp/application.cc:222
+msgid "Gap:"
+msgstr ""
+
+#: src/xcwcp/application.cc:222
+msgid "Gap Label"
+msgstr ""
+
+#: src/xcwcp/application.cc:224
+msgid "Gap"
+msgstr ""
+
+#: src/xcwcp/application.cc:225
+msgid "Farnsworth gap"
+msgstr ""
+
+#: src/xcwcp/application.cc:226
+msgid " dot(s)"
+msgstr ""
+
+#: src/xcwcp/application.cc:233
+msgid "start"
+msgstr ""
+
+#: src/xcwcp/application.cc:234
+msgid "stop"
+msgstr ""
+
+#: src/xcwcp/application.cc:244
+msgid "File"
+msgstr ""
+
+#: src/xcwcp/application.cc:245
+msgid "&File"
+msgstr ""
+
+#: src/xcwcp/application.cc:247
+msgid "&New Window"
+msgstr ""
+
+#: src/xcwcp/application.cc:250
+msgid "Clear &Display"
+msgstr ""
+
+#: src/xcwcp/application.cc:252
+msgid "Synchronize S&peed"
+msgstr ""
+
+#: src/xcwcp/application.cc:256
+msgid "&Start"
+msgstr ""
+
+#: src/xcwcp/application.cc:259
+msgid "S&top"
+msgstr ""
+
+#: src/xcwcp/application.cc:263
+msgid "&Close"
+msgstr ""
+
+#: src/xcwcp/application.cc:265
+msgid "&Quit"
+msgstr ""
+
+#: src/xcwcp/application.cc:275
+msgid "Settings"
+msgstr ""
+
+#: src/xcwcp/application.cc:276
+msgid "&Settings"
+msgstr ""
+
+#: src/xcwcp/application.cc:278 src/xcwcp/application.cc:279
+msgid "Reverse Paddles"
+msgstr ""
+
+#: src/xcwcp/application.cc:281 src/xcwcp/application.cc:282
+msgid "Curtis Mode B Timing"
+msgstr ""
+
+#: src/xcwcp/application.cc:286 src/xcwcp/application.cc:287
+msgid "Adaptive CW Receive Speed"
+msgstr ""
+
+#: src/xcwcp/application.cc:293
+msgid "&Font Settings..."
+msgstr ""
+
+#: src/xcwcp/application.cc:294
+msgid "&Color Settings..."
+msgstr ""
+
+#: src/xcwcp/application.cc:297
+msgid "Help"
+msgstr ""
+
+#: src/xcwcp/application.cc:299
+msgid "&Help"
+msgstr ""
+
+#: src/xcwcp/application.cc:301
+msgid "&About"
+msgstr ""
+
+#: src/xcwcp/application.cc:309 src/xcwcp/application.cc:506
+msgid "Ready"
+msgstr ""
+
+#: src/xcwcp/application.cc:320
+msgid "PollTimer"
+msgstr ""
+
+#: src/xcwcp/application.cc:385
+msgid "Busy - are you sure?"
+msgstr ""
+
+#: src/xcwcp/application.cc:386
+msgid "&Exit"
+msgstr ""
+
+#: src/xcwcp/application.cc:386 src/xcwcp/application.cc:421
+msgid "&Cancel"
+msgstr ""
+
+#: src/xcwcp/application.cc:420
+msgid "Another Xcwcp window is busy."
+msgstr ""
+
+#: src/xcwcp/application.cc:421
+msgid "&Stop Other"
+msgstr ""
+
+#: src/xcwcp/display.cc:80
+msgid "Display"
+msgstr ""
+
+#: src/xcwcp/receiver.cc:267
+msgid "Badly formed CW element"
+msgstr ""
+
+#: src/xcwcp/receiver.cc:268
+msgid "Receive buffer overrun"
+msgstr ""
+
+#: src/xcwcp/receiver.cc:289
+msgid "Received '"
+msgstr ""
+
+#: src/xcwcp/receiver.cc:290 src/xcwcp/sender.cc:144
+msgid "' at "
+msgstr ""
+
+#: src/xcwcp/receiver.cc:308
+msgid "Unknown character received at "
+msgstr ""
+
+#: src/xcwcp/sender.cc:143
+msgid "Sending '"
+msgstr ""

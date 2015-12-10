@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp -f ../../debian/cwcp.config DEBIAN/config
+cp -f ../../debian/cwcp.templates DEBIAN/templates

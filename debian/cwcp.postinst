@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#DEBHELPER#
+
+set -e
+
+[ "$1" = configure ] || exit 0
+
+. /usr/share/debconf/confmodule
+
+db_get cwcp/suid_bit
+
+if [ "$RET" = "true" ]; then
+  if !( `dpkg-statoverride --list | grep -q bin/cwcp` ); then
+    dpkg-statoverride --add --update root root 4755 /usr/bin/cwcp
+  fi
+fi

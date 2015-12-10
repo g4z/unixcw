@@ -1,0 +1,3 @@
+?package(xcwcp):needs="X11" section="Applications/Amateur Radio"\
+  title="xcwcp" command="/usr/bin/xcwcp" \
+  icon="/usr/share/pixmaps/icon_mini_xcwcp.xpm"

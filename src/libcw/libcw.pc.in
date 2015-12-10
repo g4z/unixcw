@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libcw
+Description: CW (Morse code) library
+Version: 6.4.1
+Libs: -L${libdir} -lcw
+Cflags: -I${includedir}

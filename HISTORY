@@ -1,0 +1,95 @@
+This is HISTORY file for unixcw. It describes major changes in unixcw
+releases. For detailed description of changes see NEWS file.
+
+
+
+
+
+The original UnixCW package, version 1, grew out of a desire to have a program
+available under Linux that was very similar to the one I was used to under DOS.
+While several Linux Morse Tutors were, in fact, still are, available, I never
+quite found one that did the stuff I wanted.
+
+From the original UnixCW package came version 2.  This was almost a total
+rewrite, although it included the same basic binaries as were in version 1.
+The two major changes for this version were the addition of an extensive,
+general purpose CW library, and also an X Window-based CW tutor program.
+
+With version 2.1, finally, came full sound card support, built into the CW
+library itself.  All three main user level programs that use the library were
+enhanced to allow control over the sound card tone volume.  Console speaker
+sound is still there, if needed, but sound card tones became the default mode.
+
+Version 2.2 was a bug-fixed version of 2.1.  It seems that some sound card
+drivers (some later OSS drivers) couldn't handle the volume control ioctls that
+the CW library uses, and this meant sound card tones would not work for these
+systems.  To solve this, version 2.2 uses the /dev/mixer device to control
+volumes if it finds that it cannot do this with the main sound card device.
+
+Version 2.3 is a thorough overhaul, cleanup, and refactoring of version 2.2.
+All the code has been reformatted for correct Gnu style, and programs now take
+a lot more care over what they do, and don't do, in signal handler context.
+cwcp and xcwcp now offer fully configurable modes and dictionaries through a
+configuration file option, and xcwcp has been rewritten in proper C++ style.
+
+Version 3.0 has been prepared and released by new lead developer,
+Kamil Ignacak. The takeover of unixcw has been discussed with and
+approved by Simon Baldwin.  Main changes in 3.0 are:
+  o rewriting parts of libcw so that using OSS is less probable to cause
+    problems (this should solve at least one Debian bug)
+  o adding support for ALSA to libcw; libcw uses OSS as default audio system,
+    but there are no differences in support of OSS and ALSA in terms of
+    functionality
+  o porting xcwcp to Qt4
+The fact that there is a new maintainer should take some burden off of
+shoulders of Kamal Mostafa, who was responsible for (among other things)
+patching unixcw.
+Version 3.0 introduces some changes in API, and there should be some
+more API changes in 3.1. Hopefully things will be more stable in 3.2.
+
+Version 3.0.1 contains small fixes that don't influence core capabilities
+of any application, but are still important. Patches for this release were
+provided mainly by Kamal Mostafa (thanks Kamal!).
+
+Version 3.1.0 adds support for PulseAudio.
+Plenty of other changes in library code improve timings of tones produced
+by the library.
+Few library functions are deprecated, they are replaced by new functions.
+
+Version 3.1.1 fixes small problem with interlocks in thread code.
+
+Version 3.2.0 introduces small fixes and improvements in libcw, and
+implements new debug facilities (the old ones are being deprecated).
+It also fixes faulty logic checking "--disable-feature" flags in
+configure.ac. The problem was spotted by Thomas Beierlein.
+
+Version 3.3.0 is mostly fixes. More fixes in configuration flags
+(thanks again to Thomas Beierlein). Patches fixing compilation under
+FreeBSD (thanks to Diane Bruce). Fixes and improvements of handling of
+iambic keying in libcw and xcwcp. Fixing compilation error in
+cwutils/dictionary.h.
+
+Version 3.3.1 is just one fix in libcw. Thanks to Pino Zollo ZP4KFX
+for reporting a bug and testing solution.
+
+Version 3.4.0 contains two changes in source code:
+ - refreshment of cwcp code;
+ - splitting libcw.c into parts.
+Additionally the build system has been updated to correctly build
+unixcw on:
+ - FreeBSD 10 (x86_64-unknown-freebsd10.0, with clang 3.3);
+ - FreeBSD 9.3 (freebsd9.3 with gcc 4.2.1);
+ - OpenBSD 5.5 (amd64-unknown-openbsd5.5 with gcc 4.2.1);
+
+Version 3.4.1 focused on internal changes in libcw. All library code
+is now split between separate module files. Some test code from
+libcw_test_public.c has been moved to respective modules.
+
+Version 3.4.2 focused on internal changes in libcw. Improving
+separation of modules in the library. Taking steps to separate
+library's global variables (generator, receiver, key) and functions
+implicitly operating on these variables from functions taking a
+generator, receiver, or key as an argument.
+Improving unit tests code.
+Testing unixcw on Alpine Linux (because of musl libc) and FreeBSD 10.0
+(because this is *unix*cw).

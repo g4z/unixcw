@@ -1,0 +1,6 @@
+usr/bin/cw
+usr/bin/cwgen
+usr/share/man/man1/cw.*
+usr/share/man/man1/cwgen.*
+usr/share/cw
+usr/share/doc/cw

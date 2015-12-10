@@ -1,0 +1,116 @@
+.\"
+.\" UnixCW CW Tutor Package - CWGEN
+.\" Copyright (C) 2001-2006  Simon Baldwin (simon_baldwin@yahoo.com)
+.\" Copyright (C) 2011-2015  Kamil Ignacak (acerion@wp.pl)
+.\"
+.\" This program is free software; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License
+.\" as published by the Free Software Foundation; either version 2
+.\" of the License, or (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with this program; if not, write to the Free Software Foundation, Inc.,
+.\" 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.\"
+.TH CWGEN 1 "CW Tutor Package" "cwgen ver. 3.4.2" \" -*- nroff -*-
+.SH NAME
+.\"
+cwgen \- generate groups of random characters for Morse code practice
+.\"
+.\"
+.\"
+.SH SYNOPSIS
+.\"
+.B cwgen
+[\-g\ \-\-groups=\fIgroups\fP]
+[\-n\ \-\-groupsize=\fIgroupsize\fP]
+[\-n\ \-\-groupsize=\fIgroup_min-group_max\fP]
+[\-r\ \-\-repeat=\fIrepeat\fP]
+[\-x\ \-\-limit=\fIlimit\fP]
+[\-c\ \-\-charset=\fIcharset\fP]
+.BR
+[\-h\ \-\-help]
+[\-V\ \-\-version]
+.PP
+\fBcwgen\fP installed on GNU/Linux systems understands both short form
+and long form command line options.  \fBcwgen\fP installed on other
+operating systems may understand only the short form options.
+.PP
+Options may be predefined in the environment variable \fBCWGEN_OPTIONS\fP.
+If defined, these options are used first; command line options take
+precedence.
+.PP
+.\"
+.\"
+.\"
+.SH DESCRIPTION
+.\"
+.PP
+.B cwgen
+provides a simple method to generate groups of random characters for
+use as input into \fBcw\fP.  Command line options control the group
+size, number of groups, and character set from which the random
+characters are selected.
+.PP
+.\"
+.\"
+.\"
+.SS COMMAND LINE OPTIONS
+.\"
+.B cwgen
+understands the following command line options.  The long form options
+may not be available in non-LINUX versions.
+.TP
+.I "\-g, \-\-groups"
+Specifies the number of groups of random characters to generate.  The
+default value is 128.
+.TP
+.I "\-n, \-\-groupsize"
+Specifies either the number of random characters in each group, if a
+single value is given, or a range for the number of random characters
+in each group if a dash-separated pair of values is given.  If a range
+is given, \fBcwgen\fP generates groups sized randomly between 'group_min'
+and 'group_max'.  The default value is 5.
+.TP
+.I "\-r, \-\-repeat"
+Specifies the number of times to repeat each group.  The default value
+is 0, indicating that each group is printed just once.
+.TP
+.I "\-x, \-\-limit"
+Specifies an upper limit on the number of characters printed.  This option
+is useful when using random group sizes, to ensure a given amount of
+practice text.  The default value is 0, indicating no upper limit on the
+number of characters printed.
+.TP
+.I "\-c, \-\-charset"
+Defines the character set from which the random characters are
+selected.  The default value is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.
+.PP
+.\"
+.\"
+.\"
+.SH EXAMPLES
+.\"
+Generate 20 groups of 10 characters from the set EISH5, and sound
+them as Morse code.  Both short-form and long-form option examples
+are shown:
+.IP
+cwgen \-g 20 \-n 10 \-c "EISH5" | cw \-w 25 \-t 850
+.IP
+cwgen \-\-groups=20 \-\-groupsize=10 \-\-charset="EISH5" |
+cw \-\-wpm=25 \-\-tone=850
+.PP
+.\"
+.\"
+.\"
+.SH SEE ALSO
+.\"
+Man pages for \fBcw\fP(7,LOCAL), \fBlibcw\fP(3,LOCAL), \fBcw\fP(1,LOCAL),
+\fBcwcp\fP(1,LOCAL), and \fBxcwcp\fP(1,LOCAL).
+.\"
